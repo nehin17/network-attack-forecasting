@@ -1,139 +1,143 @@
 import os
-import numpy as np
+import glob
 import pandas as pd
+import numpy as np
 
-# ==============================================================================
-# DIRECTORY CONFIGURATION
-# ==============================================================================
-BASE_DIR = "/Users/pratibhachaudhary/Desktop/dataset cleaned"
-CIC_DIR = os.path.join(BASE_DIR, "cic_data")
-OUTPUT_DIR = os.path.join(BASE_DIR, "output")
+INPUT_DIR = "/Users/pratibhachaudhary/Desktop/dataset cleaned/TrafficLabelling"
+OUTPUT_DIR = "/Users/pratibhachaudhary/Desktop/dataset cleaned/output"
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
+OUTPUT_FILE = os.path.join(OUTPUT_DIR, "cicids2017_cleaned_chronological.csv")
 
-# Final standardized 12-column schema
-FINAL_COLUMNS = [
-    "Timestamp",
-    "Source_Port",
-    "Destination_Port",
-    "Flow_Duration",
-    "Total_Fwd_Packets",
-    "Total_Bwd_Packets",
-    "Total_Len_Fwd_Packets",
-    "Total_Len_Bwd_Packets",
-    "Fwd_IAT_Mean",
-    "Bwd_IAT_Mean",
-    "Protocol",
-    "Label"
-]
+def clean_col(col):
+    return str(col).replace('\xa0', ' ').strip().replace('"', '').replace("'", "")
 
-def find_csv_files(directory_path):
-    """Recursively search for CSV files in directory and subdirectories."""
+def identify_and_map_columns(df):
+    cleaned_cols = {col: clean_col(col) for col in df.columns}
+    df.rename(columns=cleaned_cols, inplace=True)
+    
+    mapping = {}
+    for col in df.columns:
+        cl = col.lower().replace('_', ' ').replace('-', ' ').strip()
+        
+        if 'timestamp' in cl or 'time stamp' in cl:
+            mapping[col] = 'Timestamp'
+        elif 'source ip' in cl or 'src ip' in cl:
+            mapping[col] = 'Source_IP'
+        elif 'destination ip' in cl or 'dst ip' in cl or 'dest ip' in cl:
+            mapping[col] = 'Destination_IP'
+        elif 'source port' in cl or 'src port' in cl:
+            mapping[col] = 'Source_Port'
+        elif 'destination port' in cl or 'dst port' in cl or 'dest port' in cl:
+            mapping[col] = 'Destination_Port'
+        elif 'flow duration' in cl:
+            mapping[col] = 'Flow_Duration'
+        elif 'total fwd packets' in cl or 'total forward packets' in cl:
+            mapping[col] = 'Total_Fwd_Packets'
+        elif 'total backward packets' in cl or 'total bwd packets' in cl:
+            mapping[col] = 'Total_Bwd_Packets'
+        elif 'total length of fwd packets' in cl or 'fwd header length' in cl:
+            mapping[col] = 'Total_Len_Fwd_Packets'
+        elif 'total length of bwd packets' in cl:
+            mapping[col] = 'Total_Len_Bwd_Packets'
+        elif 'fwd iat mean' in cl:
+            mapping[col] = 'Fwd_IAT_Mean'
+        elif 'bwd iat mean' in cl:
+            mapping[col] = 'Bwd_IAT_Mean'
+        elif cl == 'protocol':
+            mapping[col] = 'Protocol'
+        elif cl == 'label':
+            mapping[col] = 'Label'
+
+    df.rename(columns=mapping, inplace=True)
+    df = df.loc[:, ~df.columns.duplicated()].copy()
+    
+    target_cols = [
+        'Timestamp', 'Source_IP', 'Destination_IP', 'Source_Port', 
+        'Destination_Port', 'Flow_Duration', 'Total_Fwd_Packets', 
+        'Total_Bwd_Packets', 'Total_Len_Fwd_Packets', 'Total_Len_Bwd_Packets', 
+        'Fwd_IAT_Mean', 'Bwd_IAT_Mean', 'Protocol', 'Label'
+    ]
+    
+    available_targets = [c for c in target_cols if c in df.columns]
+    return df[available_targets].copy()
+
+def find_all_csv_files(root_dir):
     csv_files = []
-    for root, _, filenames in os.walk(directory_path):
-        for f in filenames:
-            if f.lower().endswith(".csv") and not f.startswith("."):
-                csv_files.append(os.path.join(root, f))
+    for root, _, files in os.walk(root_dir):
+        for file in files:
+            if file.endswith('.csv') and not file.startswith('.'):
+                csv_files.append(os.path.join(root, file))
     return csv_files
 
-# ==============================================================================
-# PROCESS & CLEAN CICIDS2017
-# ==============================================================================
-def process_cicids(data_dir):
-    print("=" * 60)
-    print("STEP 1: Locating CICIDS2017 CSV files...")
-    print("=" * 60)
+def clean_and_process_cic_data(input_folder, output_path):
+    all_files = find_all_csv_files(input_folder)
+    print(f"Processing {len(all_files)} raw CICIDS2017 files...")
+    dataframes = []
+
+    for file_path in all_files:
+        filename = os.path.basename(file_path)
+        print(f"Reading: {filename}...")
+        try:
+            df = pd.read_csv(file_path, low_memory=False, encoding='utf-8', encoding_errors='replace')
+        except Exception:
+            df = pd.read_csv(file_path, low_memory=False, encoding='cp1252', encoding_errors='replace')
+            
+        df_mapped = identify_and_map_columns(df)
+        dataframes.append(df_mapped)
+
+    combined_df = pd.concat(dataframes, ignore_index=True)
+    combined_df = combined_df.loc[:, ~combined_df.columns.duplicated()].copy()
+
+    # Parse Timestamps & Sort
+    combined_df['Timestamp'] = pd.to_datetime(combined_df['Timestamp'], format='mixed', errors='coerce')
+    combined_df.dropna(subset=['Timestamp'], inplace=True)
+    combined_df.sort_values(by='Timestamp', ascending=True, inplace=True)
+    combined_df.reset_index(drop=True, inplace=True)
+
+    # Clean Numerics
+    numeric_cols = [
+        'Source_Port', 'Destination_Port', 'Flow_Duration',
+        'Total_Fwd_Packets', 'Total_Bwd_Packets',
+        'Total_Len_Fwd_Packets', 'Total_Len_Bwd_Packets',
+        'Fwd_IAT_Mean', 'Bwd_IAT_Mean', 'Protocol'
+    ]
+    for col in numeric_cols:
+        if col in combined_df.columns:
+            series = combined_df[col]
+            if isinstance(series, pd.DataFrame):
+                series = series.iloc[:, 0]
+            combined_df[col] = pd.to_numeric(series, errors='coerce')
+
+    combined_df.replace([np.inf, -np.inf], np.nan, inplace=True)
+    combined_df.dropna(subset=[c for c in numeric_cols if c in combined_df.columns], inplace=True)
+
+    if 'Protocol' in combined_df.columns:
+        combined_df['Protocol'] = combined_df['Protocol'].astype(int)
+
+    # ORIGINAL GROUND-TRUTH ENCODING
+    # Benign = 0, Any explicit attack string (DDoS, PortScan, Web Attack, etc.) = 1
+    raw_labels = combined_df['Label'].astype(str).str.strip().str.upper()
+    combined_df['Label'] = np.where(raw_labels.str.contains('BENIGN', na=False), 0, 1)
+
+    master_cols = [
+        'Timestamp', 'Source_IP', 'Destination_IP',
+        'Source_Port', 'Destination_Port', 'Flow_Duration',
+        'Total_Fwd_Packets', 'Total_Bwd_Packets',
+        'Total_Len_Fwd_Packets', 'Total_Len_Bwd_Packets',
+        'Fwd_IAT_Mean', 'Bwd_IAT_Mean', 'Protocol', 'Label'
+    ]
     
-    csv_files = find_csv_files(data_dir)
-    
-    if not csv_files:
-        raise FileNotFoundError(
-            f"❌ No CSV files found inside: {data_dir}\n"
-            f"Please verify that your raw files are in 'cic_data' and unzipped."
-        )
+    final_cols = [c for c in master_cols if c in combined_df.columns]
+    combined_df = combined_df[final_cols]
 
-    print(f"Found {len(csv_files)} CSV file(s):")
-    for f in csv_files:
-        print(f"  - {os.path.basename(f)}")
+    print(f"\nCICIDS2017 Ground-Truth Distribution:")
+    print(f"  Total Flows: {len(combined_df):,}")
+    print(f"  Normal (0):  {(combined_df['Label'] == 0).sum():,}")
+    print(f"  Attack (1):  {(combined_df['Label'] == 1).sum():,}")
 
-    print("\nSTEP 2: Reading and concatenating files...")
-    df_list = []
-    for file in csv_files:
-        print(f"  Reading: {os.path.basename(file)}...")
-        temp_df = pd.read_csv(file, low_memory=False)
-        # Clean trailing and leading whitespace in header names
-        temp_df.columns = temp_df.columns.str.strip()
-        df_list.append(temp_df)
+    combined_df.to_csv(output_path, index=False)
+    print(f"Successfully exported to: {output_path}")
 
-    df = pd.concat(df_list, ignore_index=True)
-    initial_rows = len(df)
-    print(f"\nTotal raw rows loaded: {initial_rows:,}")
-
-    print("\nSTEP 3: Aligning column schema...")
-    cic_mapping = {
-        "Timestamp": "Timestamp",
-        "Source Port": "Source_Port",
-        "Destination Port": "Destination_Port",
-        "Flow Duration": "Flow_Duration",
-        "Total Fwd Packets": "Total_Fwd_Packets",
-        "Total Backward Packets": "Total_Bwd_Packets",
-        "Total Length of Fwd Packets": "Total_Len_Fwd_Packets",
-        "Total Length of Bwd Packets": "Total_Len_Bwd_Packets",
-        "Fwd IAT Mean": "Fwd_IAT_Mean",
-        "Bwd IAT Mean": "Bwd_IAT_Mean",
-        "Protocol": "Protocol",
-        "Label": "Label"
-    }
-
-    df = df.rename(columns=cic_mapping)
-
-    # Fill missing expected columns with 0 if any raw file missed them
-    for col in FINAL_COLUMNS:
-        if col not in df.columns:
-            df[col] = 0
-
-    # Retain strictly the target schema
-    df = df[FINAL_COLUMNS].copy()
-
-    print("\nSTEP 4: Cleaning missing values, infinities, and duplicates...")
-    df.replace([np.inf, -np.inf], np.nan, inplace=True)
-    df.dropna(inplace=True)
-    df.drop_duplicates(inplace=True)
-
-    print("\nSTEP 5: Parsing timestamps and sorting chronologically...")
-    df["Timestamp"] = pd.to_datetime(df["Timestamp"], errors="coerce")
-    df.dropna(subset=["Timestamp"], inplace=True)
-    df.sort_values(by="Timestamp", ascending=True, inplace=True)
-    df.reset_index(drop=True, inplace=True)
-
-    print("\nSTEP 6: Encoding Target Label to Binary (0 = BENIGN, 1 = Attack)...")
-    df["Label"] = df["Label"].astype(str).str.strip().apply(
-        lambda x: 0 if x.upper() == "BENIGN" else 1
-    )
-
-    clean_rows = len(df)
-    print(f"\nCleaning Complete!")
-    print(f"  - Initial Rows: {initial_rows:,}")
-    print(f"  - Clean Rows  : {clean_rows:,}")
-    print(f"  - Removed     : {initial_rows - clean_rows:,} invalid/duplicate rows")
-
-    return df
-
-# ==============================================================================
-# MAIN EXECUTION
-# ==============================================================================
 if __name__ == "__main__":
-    try:
-        df_cic = process_cicids(CIC_DIR)
-
-        output_file = os.path.join(OUTPUT_DIR, "train_cicids2017_cleaned.csv")
-        print(f"\nSTEP 7: Exporting to output folder...")
-        df_cic.to_csv(output_file, index=False)
-
-        print("\n" + "=" * 60)
-        print("🎉 SUCCESS! CICIDS2017 processed and saved.")
-        print(f"Location: {output_file}")
-        print("=" * 60)
-
-    except Exception as e:
-        print(f"\n❌ Error encountered: {e}")
+    clean_and_process_cic_data(INPUT_DIR, OUTPUT_FILE)
