@@ -38,6 +38,8 @@ function formatTime(seconds) {
 
 function App() {
   const [activePage, setActivePage] = useState("monitor");
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [authMode, setAuthMode] = useState("login");
   const [monitoring, setMonitoring] = useState(true);
   const [defenseMode, setDefenseMode] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
@@ -65,24 +67,36 @@ function App() {
 
 
   return (
-    <div className={`app ${themeClass}`}>
+    <div className={`app ${themeClass} ${sidebarOpen ? "sidebar-is-open" : "sidebar-is-closed"}`}>
 
       {/* ================= HEADER ================= */}
 
       <header className="header">
 
-        <div className="brand">
+        <div className="header-left">
 
-          <div className="brand-icon">
-            ◉
-          </div>
+          <button
+            className="menu-toggle"
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            aria-label="Toggle navigation"
+          >
+            ☰
+          </button>
 
-          <div>
-            <h1>NetGuard</h1>
+          <div className="brand">
 
-            <span>
-              Network Attack Forecasting
-            </span>
+            <div className="brand-icon">
+              ◉
+            </div>
+
+            <div>
+              <h1>NetGuard</h1>
+
+              <span>
+                Network Attack Forecasting
+              </span>
+            </div>
+
           </div>
 
         </div>
@@ -102,6 +116,96 @@ function App() {
         </button>
 
       </header>
+
+      {/* =====================================================
+            SIDEBAR NAVIGATION
+        ===================================================== */}
+
+        <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
+
+          <div className="sidebar-top">
+
+            <button
+              className={`sidebar-item ${
+                activePage === "monitor" ? "selected" : ""
+              }`}
+              onClick={() => {
+                setActivePage("monitor");
+              }}
+            >
+              <span>◉</span>
+              <label>Monitor</label>
+            </button>
+
+
+            <button
+              className={`sidebar-item ${
+                activePage === "history" ||
+                activePage === "report"
+                  ? "selected"
+                  : ""
+              }`}
+              onClick={() => {
+                setActivePage("history");
+              }}
+            >
+              <span>◷</span>
+              <label>History</label>
+            </button>
+
+
+            <button
+              className={`sidebar-item ${
+                activePage === "dictionary" ||
+                activePage === "dictionary-detail"
+                  ? "selected"
+                  : ""
+              }`}
+              onClick={() => {
+                setActivePage("dictionary");
+              }}
+            >
+              <span>▣</span>
+              <label>Attack Dictionary</label>
+            </button>
+
+
+            <button
+              className={`sidebar-item ${
+                activePage === "system"
+                  ? "selected"
+                  : ""
+              }`}
+              onClick={() => {
+                setActivePage("system");
+              }}
+            >
+              <span>⚙</span>
+              <label>Settings</label>
+            </button>
+
+          </div>
+
+
+          <div className="sidebar-bottom">
+
+            <button
+              className={`sidebar-item login-item ${
+                activePage === "login" ? "selected" : ""
+              }`}
+              onClick={() => {
+                setActivePage("login");
+              }}
+            >
+              <span>♙</span>
+              <label>Login</label>
+            </button>
+
+          </div>
+
+        </aside>
+
+                    
 
 
       {/* ================= CONTENT ================= */}
@@ -1076,7 +1180,150 @@ function App() {
             </div>
 
           )}
+          {/* =====================================================
+            LOGIN
+        ===================================================== */}
 
+        
+        {activePage === "login" && (
+
+          <div className="auth-page">
+
+            <div className="auth-card">
+
+              <div className="auth-logo">
+                ◉
+              </div>
+
+              {authMode === "login" ? (
+
+                <>
+                  <h2>Welcome back</h2>
+
+                  <p className="auth-subtitle">
+                    Sign in to access your NetGuard dashboard.
+                  </p>
+
+                  <form
+                    className="auth-form"
+                    onSubmit={(e) => e.preventDefault()}
+                  >
+
+                    <label>Email</label>
+
+                    <input
+                      type="email"
+                      placeholder="Enter your email"
+                    />
+
+                    <label>Password</label>
+
+                    <input
+                      type="password"
+                      placeholder="Enter your password"
+                    />
+
+                    <button
+                      type="submit"
+                      className="auth-submit"
+                    >
+                      Sign In
+                    </button>
+
+                  </form>
+
+                  <div className="auth-switch">
+
+                    <span>
+                      Don't have an account?
+                    </span>
+
+                    <button
+                      onClick={() => setAuthMode("signup")}
+                    >
+                      Create one
+                    </button>
+
+                  </div>
+                </>
+
+              ) : (
+
+                <>
+                  <h2>Create your account</h2>
+
+                  <p className="auth-subtitle">
+                    Set up your NetGuard security profile.
+                  </p>
+
+                  <form
+                    className="auth-form"
+                    onSubmit={(e) => e.preventDefault()}
+                  >
+
+                    <label>Name</label>
+
+                    <input
+                      type="text"
+                      placeholder="Enter your name"
+                    />
+
+                    <label>Email</label>
+
+                    <input
+                      type="email"
+                      placeholder="Enter your email"
+                    />
+
+                    <label>Password</label>
+
+                    <input
+                      type="password"
+                      placeholder="Create a password"
+                    />
+
+                    <label>Confirm Password</label>
+
+                    <input
+                      type="password"
+                      placeholder="Confirm your password"
+                    />
+
+                    <button
+                      type="submit"
+                      className="auth-submit"
+                    >
+                      Create Account
+                    </button>
+
+                  </form>
+
+                  <div className="auth-switch">
+
+                    <span>
+                      Already have an account?
+                    </span>
+
+                    <button
+                      onClick={() => setAuthMode("login")}
+                    >
+                      Sign in
+                    </button>
+
+                  </div>
+                </>
+
+              )}
+
+              <div className="auth-demo-note">
+                Authentication will be connected to FastAPI later.
+              </div>
+
+            </div>
+
+          </div>
+
+        )}
 
         {/* =====================================================
             SETTINGS
@@ -1292,86 +1539,12 @@ function App() {
 
       </main>
 
-
-      {/* =====================================================
-          BOTTOM NAVIGATION
-      ===================================================== */}
-
-      <nav className="navigation">
-
-        <button
-          className={
-            activePage === "monitor"
-              ? "selected"
-              : ""
-          }
-          onClick={() =>
-            setActivePage("monitor")
-          }
-        >
-
-          <span>◉</span>
-          Monitor
-
-        </button>
-
-
-        <button
-          className={
-            activePage === "history" ||
-            activePage === "report"
-              ? "selected"
-              : ""
-          }
-          onClick={() =>
-            setActivePage("history")
-          }
-        >
-
-          <span>◷</span>
-          History
-
-        </button>
-
-
-        <button
-          className={
-            activePage === "dictionary" ||
-            activePage === "dictionary-detail"
-              ? "selected"
-              : ""
-          }
-          onClick={() =>
-            setActivePage("dictionary")
-          }
-        >
-
-          <span>▣</span>
-          Dictionary
-
-        </button>
-
-
-        <button
-          className={
-            activePage === "system"
-              ? "selected"
-              : ""
-          }
-          onClick={() =>
-            setActivePage("system")
-          }
-        >
-
-          <span>⚙</span>
-          Settings
-
-        </button>
-
-      </nav>
-
     </div>
+
+    
+
   );
 }
+
 
 export default App;
