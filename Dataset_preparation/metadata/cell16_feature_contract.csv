@@ -1,0 +1,104 @@
+Feature,Role,Dtype
+Segment_ID,IDENTITY — FORBIDDEN,int64
+Minute,IDENTITY — FORBIDDEN,datetime64[ns]
+Source Port__mean,NUMERIC CANDIDATE,float64
+Destination Port__mean,NUMERIC CANDIDATE,float64
+Protocol__mean,NUMERIC CANDIDATE,float64
+Flow Duration__mean,NUMERIC CANDIDATE,float64
+Total Fwd Packets__mean,NUMERIC CANDIDATE,float64
+Total Backward Packets__mean,NUMERIC CANDIDATE,float64
+Total Length of Fwd Packets__mean,NUMERIC CANDIDATE,float64
+Total Length of Bwd Packets__mean,NUMERIC CANDIDATE,float64
+Fwd Packet Length Max__mean,NUMERIC CANDIDATE,float64
+Fwd Packet Length Min__mean,NUMERIC CANDIDATE,float64
+Fwd Packet Length Mean__mean,NUMERIC CANDIDATE,float64
+Fwd Packet Length Std__mean,NUMERIC CANDIDATE,float64
+Bwd Packet Length Max__mean,NUMERIC CANDIDATE,float64
+Bwd Packet Length Min__mean,NUMERIC CANDIDATE,float64
+Bwd Packet Length Mean__mean,NUMERIC CANDIDATE,float64
+Bwd Packet Length Std__mean,NUMERIC CANDIDATE,float64
+Flow Bytes/s__mean,NUMERIC CANDIDATE,float64
+Flow Packets/s__mean,NUMERIC CANDIDATE,float64
+Flow IAT Mean__mean,NUMERIC CANDIDATE,float64
+Flow IAT Std__mean,NUMERIC CANDIDATE,float64
+Flow IAT Max__mean,NUMERIC CANDIDATE,float64
+Flow IAT Min__mean,NUMERIC CANDIDATE,float64
+Fwd IAT Total__mean,NUMERIC CANDIDATE,float64
+Fwd IAT Mean__mean,NUMERIC CANDIDATE,float64
+Fwd IAT Std__mean,NUMERIC CANDIDATE,float64
+Fwd IAT Max__mean,NUMERIC CANDIDATE,float64
+Fwd IAT Min__mean,NUMERIC CANDIDATE,float64
+Bwd IAT Total__mean,NUMERIC CANDIDATE,float64
+Bwd IAT Mean__mean,NUMERIC CANDIDATE,float64
+Bwd IAT Std__mean,NUMERIC CANDIDATE,float64
+Bwd IAT Max__mean,NUMERIC CANDIDATE,float64
+Bwd IAT Min__mean,NUMERIC CANDIDATE,float64
+Fwd PSH Flags__mean,NUMERIC CANDIDATE,float64
+Bwd PSH Flags__mean,NUMERIC CANDIDATE,float64
+Fwd URG Flags__mean,NUMERIC CANDIDATE,float64
+Bwd URG Flags__mean,NUMERIC CANDIDATE,float64
+Fwd Header Length__mean,NUMERIC CANDIDATE,float64
+Bwd Header Length__mean,NUMERIC CANDIDATE,float64
+Fwd Packets/s__mean,NUMERIC CANDIDATE,float64
+Bwd Packets/s__mean,NUMERIC CANDIDATE,float64
+Min Packet Length__mean,NUMERIC CANDIDATE,float64
+Max Packet Length__mean,NUMERIC CANDIDATE,float64
+Packet Length Mean__mean,NUMERIC CANDIDATE,float64
+Packet Length Std__mean,NUMERIC CANDIDATE,float64
+Packet Length Variance__mean,NUMERIC CANDIDATE,float64
+FIN Flag Count__mean,NUMERIC CANDIDATE,float64
+SYN Flag Count__mean,NUMERIC CANDIDATE,float64
+RST Flag Count__mean,NUMERIC CANDIDATE,float64
+PSH Flag Count__mean,NUMERIC CANDIDATE,float64
+ACK Flag Count__mean,NUMERIC CANDIDATE,float64
+URG Flag Count__mean,NUMERIC CANDIDATE,float64
+CWE Flag Count__mean,NUMERIC CANDIDATE,float64
+ECE Flag Count__mean,NUMERIC CANDIDATE,float64
+Down/Up Ratio__mean,NUMERIC CANDIDATE,float64
+Average Packet Size__mean,NUMERIC CANDIDATE,float64
+Avg Fwd Segment Size__mean,NUMERIC CANDIDATE,float64
+Avg Bwd Segment Size__mean,NUMERIC CANDIDATE,float64
+Fwd Header Length.1__mean,NUMERIC CANDIDATE,float64
+Fwd Avg Bytes/Bulk__mean,NUMERIC CANDIDATE,float64
+Fwd Avg Packets/Bulk__mean,NUMERIC CANDIDATE,float64
+Fwd Avg Bulk Rate__mean,NUMERIC CANDIDATE,float64
+Bwd Avg Bytes/Bulk__mean,NUMERIC CANDIDATE,float64
+Bwd Avg Packets/Bulk__mean,NUMERIC CANDIDATE,float64
+Bwd Avg Bulk Rate__mean,NUMERIC CANDIDATE,float64
+Subflow Fwd Packets__mean,NUMERIC CANDIDATE,float64
+Subflow Fwd Bytes__mean,NUMERIC CANDIDATE,float64
+Subflow Bwd Packets__mean,NUMERIC CANDIDATE,float64
+Subflow Bwd Bytes__mean,NUMERIC CANDIDATE,float64
+Init_Win_bytes_forward__mean,NUMERIC CANDIDATE,float64
+Init_Win_bytes_backward__mean,NUMERIC CANDIDATE,float64
+act_data_pkt_fwd__mean,NUMERIC CANDIDATE,float64
+min_seg_size_forward__mean,NUMERIC CANDIDATE,float64
+Active Mean__mean,NUMERIC CANDIDATE,float64
+Active Std__mean,NUMERIC CANDIDATE,float64
+Active Max__mean,NUMERIC CANDIDATE,float64
+Active Min__mean,NUMERIC CANDIDATE,float64
+Idle Mean__mean,NUMERIC CANDIDATE,float64
+Idle Std__mean,NUMERIC CANDIDATE,float64
+Idle Max__mean,NUMERIC CANDIDATE,float64
+Idle Min__mean,NUMERIC CANDIDATE,float64
+Flow_Count,NUMERIC CANDIDATE,int64
+Unique_Source_IPs,NUMERIC CANDIDATE,float64
+Unique_Destination_IPs,NUMERIC CANDIDATE,float64
+Unique_Source_Ports,NUMERIC CANDIDATE,float64
+Unique_Destination_Ports,NUMERIC CANDIDATE,float64
+Unique_Protocols,NUMERIC CANDIDATE,float64
+Total_Flow_Count,NUMERIC CANDIDATE,int64
+Attack_Flow_Count,ATTACK GROUND TRUTH — FORBIDDEN,int64
+Benign_Flow_Count,NUMERIC CANDIDATE,int64
+Attack_State,ATTACK GROUND TRUTH — FORBIDDEN,int8
+Attack_Ratio,ATTACK GROUND TRUTH — FORBIDDEN,float64
+Attack_Types,ATTACK GROUND TRUTH — FORBIDDEN,object
+Attack_Source_IPs,ATTACK GROUND TRUTH — FORBIDDEN,object
+Attack_Destination_IPs,ATTACK GROUND TRUTH — FORBIDDEN,object
+Attack_Edges,ATTACK GROUND TRUTH — FORBIDDEN,object
+Typed_Attack_Edges,ATTACK GROUND TRUTH — FORBIDDEN,object
+Attack_Type_Count,ATTACK GROUND TRUTH — FORBIDDEN,int32
+Attack_Source_Count,ATTACK GROUND TRUTH — FORBIDDEN,int32
+Attack_Destination_Count,ATTACK GROUND TRUTH — FORBIDDEN,int32
+Attack_Edge_Count,ATTACK GROUND TRUTH — FORBIDDEN,int32
+Typed_Attack_Edge_Count,ATTACK GROUND TRUTH — FORBIDDEN,int32

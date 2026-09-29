@@ -1,0 +1,70 @@
+{
+  "split_version": "CELL15_PERMANENT_STRICT_TEMPORAL_V1",
+  "split_unit": "capture_segment",
+  "history_length_minutes": 15,
+  "history_back_minutes": 14,
+  "forecast_horizons": [
+    1,
+    5,
+    10,
+    15,
+    30
+  ],
+  "maximum_horizon_minutes": 30,
+  "train_segments": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "validation_segments": [
+    6,
+    7
+  ],
+  "test_segments": [
+    8,
+    9
+  ],
+  "train_origins": 1220,
+  "validation_origins": 398,
+  "test_origins": 396,
+  "train_attack_types": [
+    "DoS GoldenEye",
+    "DoS Hulk",
+    "DoS Slowhttptest",
+    "DoS slowloris",
+    "FTP-Patator",
+    "Heartbleed",
+    "SSH-Patator"
+  ],
+  "validation_attack_types": [
+    "Infiltration",
+    "Web Attack – Brute Force",
+    "Web Attack – Sql Injection",
+    "Web Attack – XSS"
+  ],
+  "test_attack_types": [
+    "Bot",
+    "DDoS",
+    "PortScan"
+  ],
+  "validation_known_types": [],
+  "validation_unseen_types": [
+    "Infiltration",
+    "Web Attack – Brute Force",
+    "Web Attack – Sql Injection",
+    "Web Attack – XSS"
+  ],
+  "test_known_types": [],
+  "test_unseen_types": [
+    "Bot",
+    "DDoS",
+    "PortScan"
+  ],
+  "split_selection_uses_model_performance": false,
+  "scaling_performed": false,
+  "resampling_performed": false,
+  "model_trained": false
+}

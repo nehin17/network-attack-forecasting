@@ -1,0 +1,11 @@
+{
+  "architecture_selection": false,
+  "hyperparameter_selection": false,
+  "epoch_selection": false,
+  "early_stopping": false,
+  "loss_weight_selection": false,
+  "feature_selection": false,
+  "threshold_selection": false,
+  "checkpoint_selection": false,
+  "final_evaluation": true
+}

@@ -1,0 +1,81 @@
+Feature,Train_Variance_After_Scaling,Zero_Variance
+Source Port__mean,0.9999874,False
+Destination Port__mean,1.0000097,False
+Protocol__mean,1.0000056,False
+Flow Duration__mean,1.0000054,False
+Total Fwd Packets__mean,1.0000038,False
+Total Backward Packets__mean,1.0000154,False
+Total Length of Fwd Packets__mean,1.0000007,False
+Total Length of Bwd Packets__mean,0.9999906,False
+Fwd Packet Length Max__mean,0.9999921,False
+Fwd Packet Length Min__mean,0.9999962,False
+Fwd Packet Length Mean__mean,1.0000008,False
+Fwd Packet Length Std__mean,0.9999934,False
+Bwd Packet Length Max__mean,1.0000056,False
+Bwd Packet Length Min__mean,1.0000032,False
+Bwd Packet Length Mean__mean,0.99999297,False
+Bwd Packet Length Std__mean,0.9999983,False
+Flow Bytes/s__mean,1.0000081,False
+Flow Packets/s__mean,0.9999918,False
+Flow IAT Mean__mean,0.99998987,False
+Flow IAT Std__mean,1.0000031,False
+Flow IAT Max__mean,0.9999985,False
+Flow IAT Min__mean,1.0000056,False
+Fwd IAT Total__mean,0.9999949,False
+Fwd IAT Mean__mean,1.0000046,False
+Fwd IAT Std__mean,0.99999905,False
+Fwd IAT Max__mean,1.0000011,False
+Fwd IAT Min__mean,0.9999977,False
+Bwd IAT Total__mean,1.0000098,False
+Bwd IAT Mean__mean,1.0000005,False
+Bwd IAT Std__mean,0.99999744,False
+Bwd IAT Max__mean,0.9999973,False
+Bwd IAT Min__mean,0.9999992,False
+Fwd PSH Flags__mean,1.0000024,False
+Fwd URG Flags__mean,0.0,True
+Fwd Header Length__mean,0.9997924,False
+Bwd Header Length__mean,0.9997412,False
+Fwd Packets/s__mean,0.99999106,False
+Bwd Packets/s__mean,1.0000001,False
+Min Packet Length__mean,1.0000021,False
+Max Packet Length__mean,0.99999744,False
+Packet Length Mean__mean,1.0000014,False
+Packet Length Std__mean,1.0000039,False
+Packet Length Variance__mean,1.0000005,False
+FIN Flag Count__mean,1.0000069,False
+SYN Flag Count__mean,1.0000024,False
+RST Flag Count__mean,1.0000094,False
+PSH Flag Count__mean,1.0000077,False
+ACK Flag Count__mean,0.9999936,False
+URG Flag Count__mean,0.9999972,False
+CWE Flag Count__mean,0.0,True
+ECE Flag Count__mean,1.0000032,False
+Down/Up Ratio__mean,0.99999666,False
+Average Packet Size__mean,0.9999969,False
+Avg Fwd Segment Size__mean,1.0000008,False
+Avg Bwd Segment Size__mean,0.99999297,False
+Fwd Header Length.1__mean,0.9997924,False
+Subflow Fwd Packets__mean,1.0000038,False
+Subflow Fwd Bytes__mean,1.0000007,False
+Subflow Bwd Packets__mean,1.0000154,False
+Subflow Bwd Bytes__mean,0.9999892,False
+Init_Win_bytes_forward__mean,1.0000031,False
+Init_Win_bytes_backward__mean,0.9999903,False
+act_data_pkt_fwd__mean,1.0000154,False
+min_seg_size_forward__mean,0.9996844,False
+Active Mean__mean,1.0000005,False
+Active Std__mean,0.9999986,False
+Active Max__mean,1.0000001,False
+Active Min__mean,1.0,False
+Idle Mean__mean,0.999995,False
+Idle Std__mean,0.9999982,False
+Idle Max__mean,0.9999996,False
+Idle Min__mean,0.9999953,False
+Flow_Count,0.999997,False
+Unique_Source_IPs,0.9999981,False
+Unique_Destination_IPs,0.9999807,False
+Unique_Source_Ports,0.999995,False
+Unique_Destination_Ports,0.9999935,False
+Unique_Protocols,0.9999699,False
+Total_Flow_Count,0.999997,False
+Benign_Flow_Count,0.99999714,False

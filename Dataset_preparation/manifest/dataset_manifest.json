@@ -1,0 +1,93 @@
+{
+  "dataset_version": "forecasting_v1",
+  "dataset_status": "FROZEN",
+  "task": "binary_multi_horizon_network_attack_forecasting",
+  "temporal_resolution": "1_minute",
+  "history_length_minutes": 15,
+  "forecast_semantics": "POINT_TARGET_AT_EXACTLY_T_PLUS_H",
+  "forecast_horizons_minutes": [
+    1,
+    5,
+    10,
+    15,
+    30
+  ],
+  "feature_count": 80,
+  "feature_dtype": "float32",
+  "target_dtype": "float32",
+  "splits": {
+    "TRAIN": {
+      "samples": 1220,
+      "X_shape": [
+        1220,
+        15,
+        80
+      ],
+      "y_shape": [
+        1220,
+        5
+      ]
+    },
+    "VALIDATION": {
+      "samples": 398,
+      "X_shape": [
+        398,
+        15,
+        80
+      ],
+      "y_shape": [
+        398,
+        5
+      ]
+    },
+    "TEST": {
+      "samples": 396,
+      "X_shape": [
+        396,
+        15,
+        80
+      ],
+      "y_shape": [
+        396,
+        5
+      ]
+    }
+  },
+  "preprocessing": {
+    "scaler": "StandardScaler",
+    "scaler_fit_partition": "TRAIN_ONLY",
+    "imputer_exported": false,
+    "resampling": false
+  },
+  "evaluation": {
+    "primary_model_selection_metric": "Macro_Validation_PR_AUC",
+    "primary_per_horizon_metric": "PR_AUC",
+    "threshold_selection_partition": "VALIDATION_ONLY",
+    "test_used_for_model_selection": false,
+    "test_threshold_tuning": false
+  },
+  "artifact_structure": {
+    "tensors": "tensors/",
+    "metadata": "metadata/",
+    "preprocessing": "preprocessing/",
+    "contracts": "contracts/",
+    "manifest": "manifest/"
+  },
+  "rich_metadata_exports": [
+    "cell15_forecast_metadata.csv",
+    "cell12_forecast_metadata.csv",
+    "cell16_sequence_metadata.csv",
+    "cell15_evaluation_attack_metadata.csv",
+    "cell14a_forecast_episode_map.csv"
+  ],
+  "support_table_exports": [
+    "cell18_class_balance.csv",
+    "cell18_prevalence_shift.csv",
+    "cell18_reference_baselines.csv",
+    "cell18_feature_variance_audit.csv",
+    "cell18_horizon_selection_weights.csv",
+    "cell16_feature_contract.csv",
+    "cell16_feature_quality.csv",
+    "cell16_target_distribution.csv"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "primary_kpi": "lead_time_minutes",
+  "definition": "attack_episode_start_minus_first_valid_pre_attack_warning",
+  "warning_must_precede_attack_start": true,
+  "threshold_source": "VALIDATION_ONLY",
+  "episode_source": "canonical_episode_alignment",
+  "compute_during_training": false,
+  "compute_after_predictions": true,
+  "test_rule_changed_after_test": false
+}
