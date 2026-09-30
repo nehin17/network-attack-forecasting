@@ -1,3 +1,18 @@
+# Python environment
+.venv/
+venv/
 
-# macOS
-.DS_Store
+# Python cache
+__pycache__/
+*.pyc
+
+# Datasets
+DATA/raw/
+DATA/processed/
+
+# Generated NumPy training/prediction arrays
+*.npz
+
+# OS / IDE
+.DS_Store/
+.vscode/
