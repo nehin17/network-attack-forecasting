@@ -1,0 +1,159 @@
+FINAL WALK-FORWARD FUTURE ATTACK TYPE COMPARISON
+History=10 minutes; horizon=1 minute
+Classes=[np.str_('BENIGN'), np.str_('Bot'), np.str_('DDoS'), np.str_('DoS GoldenEye'), np.str_('DoS Hulk'), np.str_('DoS Slowhttptest'), np.str_('DoS slowloris'), np.str_('FTP-Patator'), np.str_('Heartbleed'), np.str_('Infiltration'), np.str_('PortScan'), np.str_('SSH-Patator'), np.str_('Web Attack - Brute Force'), np.str_('Web Attack - Sql Injection'), np.str_('Web Attack - XSS')]
+Device=cpu
+
+
+FOLD 1: train=1144, val=247, test=244; train_classes=11, val_classes=7, test_classes=6
+Temporal XGBoost | fold 1 | n=244 | accuracy=0.5656 | macro_precision=0.0798 | macro_recall=0.0720 | macro_f1=0.0640 | weighted_f1=0.4505
+                            precision    recall  f1-score   support
+
+                    BENIGN      0.597     0.938     0.730       144
+                       Bot      0.600     0.143     0.231        21
+                      DDoS      0.000     0.000     0.000         0
+             DoS GoldenEye      0.000     0.000     0.000         0
+                  DoS Hulk      0.000     0.000     0.000         0
+          DoS Slowhttptest      0.000     0.000     0.000        10
+             DoS slowloris      0.000     0.000     0.000        24
+               FTP-Patator      0.000     0.000     0.000        37
+                Heartbleed      0.000     0.000     0.000         0
+              Infiltration      0.000     0.000     0.000         8
+                  PortScan      0.000     0.000     0.000         0
+               SSH-Patator      0.000     0.000     0.000         0
+  Web Attack - Brute Force      0.000     0.000     0.000         0
+Web Attack - Sql Injection      0.000     0.000     0.000         0
+          Web Attack - XSS      0.000     0.000     0.000         0
+
+                  accuracy                          0.566       244
+                 macro avg      0.080     0.072     0.064       244
+              weighted avg      0.404     0.566     0.451       244
+
+GRU | fold 1 | n=244 | accuracy=0.1148 | macro_precision=0.0533 | macro_recall=0.0130 | macro_f1=0.0209 | weighted_f1=0.1846
+                            precision    recall  f1-score   support
+
+                    BENIGN      0.800     0.194     0.313       144
+                       Bot      0.000     0.000     0.000        21
+                      DDoS      0.000     0.000     0.000         0
+             DoS GoldenEye      0.000     0.000     0.000         0
+                  DoS Hulk      0.000     0.000     0.000         0
+          DoS Slowhttptest      0.000     0.000     0.000        10
+             DoS slowloris      0.000     0.000     0.000        24
+               FTP-Patator      0.000     0.000     0.000        37
+                Heartbleed      0.000     0.000     0.000         0
+              Infiltration      0.000     0.000     0.000         8
+                  PortScan      0.000     0.000     0.000         0
+               SSH-Patator      0.000     0.000     0.000         0
+  Web Attack - Brute Force      0.000     0.000     0.000         0
+Web Attack - Sql Injection      0.000     0.000     0.000         0
+          Web Attack - XSS      0.000     0.000     0.000         0
+
+                  accuracy                          0.115       244
+                 macro avg      0.053     0.013     0.021       244
+              weighted avg      0.472     0.115     0.185       244
+
+
+FOLD 2: train=1391, val=244, test=245; train_classes=12, val_classes=6, test_classes=6
+Temporal XGBoost | fold 2 | n=245 | accuracy=0.7184 | macro_precision=0.0493 | macro_recall=0.0645 | macro_f1=0.0559 | weighted_f1=0.6226
+                            precision    recall  f1-score   support
+
+                    BENIGN      0.739     0.967     0.838       182
+                       Bot      0.000     0.000     0.000        21
+                      DDoS      0.000     0.000     0.000         0
+             DoS GoldenEye      0.000     0.000     0.000         6
+                  DoS Hulk      0.000     0.000     0.000        21
+          DoS Slowhttptest      0.000     0.000     0.000         9
+             DoS slowloris      0.000     0.000     0.000         0
+               FTP-Patator      0.000     0.000     0.000         0
+                Heartbleed      0.000     0.000     0.000         0
+              Infiltration      0.000     0.000     0.000         0
+                  PortScan      0.000     0.000     0.000         6
+               SSH-Patator      0.000     0.000     0.000         0
+  Web Attack - Brute Force      0.000     0.000     0.000         0
+Web Attack - Sql Injection      0.000     0.000     0.000         0
+          Web Attack - XSS      0.000     0.000     0.000         0
+
+                  accuracy                          0.718       245
+                 macro avg      0.049     0.064     0.056       245
+              weighted avg      0.549     0.718     0.623       245
+
+GRU | fold 2 | n=245 | accuracy=0.0490 | macro_precision=0.0412 | macro_recall=0.0269 | macro_f1=0.0187 | weighted_f1=0.0516
+                            precision    recall  f1-score   support
+
+                    BENIGN      0.444     0.022     0.042       182
+                       Bot      0.174     0.381     0.239        21
+                      DDoS      0.000     0.000     0.000         0
+             DoS GoldenEye      0.000     0.000     0.000         6
+                  DoS Hulk      0.000     0.000     0.000        21
+          DoS Slowhttptest      0.000     0.000     0.000         9
+             DoS slowloris      0.000     0.000     0.000         0
+               FTP-Patator      0.000     0.000     0.000         0
+                Heartbleed      0.000     0.000     0.000         0
+              Infiltration      0.000     0.000     0.000         0
+                  PortScan      0.000     0.000     0.000         6
+               SSH-Patator      0.000     0.000     0.000         0
+  Web Attack - Brute Force      0.000     0.000     0.000         0
+Web Attack - Sql Injection      0.000     0.000     0.000         0
+          Web Attack - XSS      0.000     0.000     0.000         0
+
+                  accuracy                          0.049       245
+                 macro avg      0.041     0.027     0.019       245
+              weighted avg      0.345     0.049     0.052       245
+
+
+FOLD 3: train=1635, val=245, test=245; train_classes=13, val_classes=6, test_classes=4
+Temporal XGBoost | fold 3 | n=245 | accuracy=0.8776 | macro_precision=0.0592 | macro_recall=0.0661 | macro_f1=0.0625 | weighted_f1=0.8298
+                            precision    recall  f1-score   support
+
+                    BENIGN      0.888     0.991     0.937       217
+                       Bot      0.000     0.000     0.000        20
+                      DDoS      0.000     0.000     0.000         0
+             DoS GoldenEye      0.000     0.000     0.000         2
+                  DoS Hulk      0.000     0.000     0.000         0
+          DoS Slowhttptest      0.000     0.000     0.000         0
+             DoS slowloris      0.000     0.000     0.000         0
+               FTP-Patator      0.000     0.000     0.000         0
+                Heartbleed      0.000     0.000     0.000         0
+              Infiltration      0.000     0.000     0.000         0
+                  PortScan      0.000     0.000     0.000         6
+               SSH-Patator      0.000     0.000     0.000         0
+  Web Attack - Brute Force      0.000     0.000     0.000         0
+Web Attack - Sql Injection      0.000     0.000     0.000         0
+          Web Attack - XSS      0.000     0.000     0.000         0
+
+                  accuracy                          0.878       245
+                 macro avg      0.059     0.066     0.062       245
+              weighted avg      0.787     0.878     0.830       245
+
+GRU | fold 3 | n=245 | accuracy=0.1102 | macro_precision=0.0708 | macro_recall=0.0386 | macro_f1=0.0263 | weighted_f1=0.1480
+                            precision    recall  f1-score   support
+
+                    BENIGN      0.895     0.078     0.144       217
+                       Bot      0.167     0.500     0.250        20
+                      DDoS      0.000     0.000     0.000         0
+             DoS GoldenEye      0.000     0.000     0.000         2
+                  DoS Hulk      0.000     0.000     0.000         0
+          DoS Slowhttptest      0.000     0.000     0.000         0
+             DoS slowloris      0.000     0.000     0.000         0
+               FTP-Patator      0.000     0.000     0.000         0
+                Heartbleed      0.000     0.000     0.000         0
+              Infiltration      0.000     0.000     0.000         0
+                  PortScan      0.000     0.000     0.000         6
+               SSH-Patator      0.000     0.000     0.000         0
+  Web Attack - Brute Force      0.000     0.000     0.000         0
+Web Attack - Sql Injection      0.000     0.000     0.000         0
+          Web Attack - XSS      0.000     0.000     0.000         0
+
+                  accuracy                          0.110       245
+                 macro avg      0.071     0.039     0.026       245
+              weighted avg      0.806     0.110     0.148       245
+
+
+AGGREGATED FOLD MEANS (each fold equally weighted)
+Temporal XGBoost | accuracy=0.7205 | macro_precision=0.0628 | macro_recall=0.0675 | macro_f1=0.0608 | weighted_f1=0.6343
+GRU | accuracy=0.0913 | macro_precision=0.0551 | macro_recall=0.0261 | macro_f1=0.0219 | weighted_f1=0.1281
+
+Interpretation notes:
+- Fold metrics are chronological and use a common test block per fold.
+- A class absent from a particular test block has zero F1 in that fold's fixed-class macro score.
+- The three fold means are descriptive, not a guarantee of future performance.
+- No random oversampling or synthetic test examples were used.

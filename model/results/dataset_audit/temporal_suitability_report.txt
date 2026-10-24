@@ -1,0 +1,207 @@
+TARGETED TEMPORAL SUITABILITY CHECK
+Project root: C:\Users\Neha\Desktop\semester 07\minor project (4)\network-attack-forecasting
+Sample cap: 30,000 rows per file
+Source data is read-only. This is a suitability check, not a performance benchmark.
+Raw/processed duplicates are not treated as independent datasets.
+
+==============================================================================
+DATASET: CICIDS2017
+FILE: DATA\raw\CICID\Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv
+Rows sampled: 30,000 (cap 30,000; not a full-file count)
+Columns (85): Flow ID,  Source IP,  Source Port,  Destination IP,  Destination Port,  Protocol,  Timestamp,  Flow Duration,  Total Fwd Packets,  Total Backward Packets, Total Length of Fwd Packets,  Total Length of Bwd Packets,  Fwd Packet Length Max,  Fwd Packet Length Min,  Fwd Packet Length Mean,  Fwd Packet Length Std, Bwd Packet Length Max,  Bwd Packet Length Min,  Bwd Packet Length Mean,  Bwd Packet Length Std, Flow Bytes/s,  Flow Packets/s,  Flow IAT Mean,  Flow IAT Std,  Flow IAT Max,  Flow IAT Min, Fwd IAT Total,  Fwd IAT Mean,  Fwd IAT Std,  Fwd IAT Max,  Fwd IAT Min, Bwd IAT Total,  Bwd IAT Mean,  Bwd IAT Std,  Bwd IAT Max,  Bwd IAT Min, Fwd PSH Flags,  Bwd PSH Flags,  Fwd URG Flags,  Bwd URG Flags,  Fwd Header Length,  Bwd Header Length, Fwd Packets/s,  Bwd Packets/s,  Min Packet Length,  Max Packet Length,  Packet Length Mean,  Packet Length Std,  Packet Length Variance, FIN Flag Count,  SYN Flag Count,  RST Flag Count,  PSH Flag Count,  ACK Flag Count,  URG Flag Count,  CWE Flag Count,  ECE Flag Count,  Down/Up Ratio,  Average Packet Size,  Avg Fwd Segment Size,  Avg Bwd Segment Size,  Fwd Header Length.1, Fwd Avg Bytes/Bulk,  Fwd Avg Packets/Bulk,  Fwd Avg Bulk Rate,  Bwd Avg Bytes/Bulk,  Bwd Avg Packets/Bulk, Bwd Avg Bulk Rate, Subflow Fwd Packets,  Subflow Fwd Bytes,  Subflow Bwd Packets,  Subflow Bwd Bytes, Init_Win_bytes_forward,  Init_Win_bytes_backward,  act_data_pkt_fwd,  min_seg_size_forward, Active Mean,  Active Std,  Active Max,  Active Min, Idle Mean,  Idle Std,  Idle Max,  Idle Min,  Label
+Chosen timestamp column: ' Timestamp'
+Chosen attack target candidate: ' Label'
+Timestamp parse rate: 100.0%
+Sample time range: 2017-07-07 03:30:00+00:00 -> 2017-07-07 03:57:00+00:00
+Unique minute bins in sample: 28
+Rows ordered by timestamp already: True
+10-minute bins with labels: 3
+Most-common label per 10-minute bin (top 20): [('BENIGN', 2), ('DDoS', 1)]
+Changes in dominant 10-minute-bin label: 0
+Distinct labels in sample: 2
+Label counts in sample (top 30):
+  'BENIGN': 20111
+  'DDoS': 9889
+Columns inferred numeric by pandas: 80
+
+==============================================================================
+DATASET: CICIDS2017
+FILE: DATA\raw\CICID\Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv
+Rows sampled: 30,000 (cap 30,000; not a full-file count)
+Columns (85): Flow ID,  Source IP,  Source Port,  Destination IP,  Destination Port,  Protocol,  Timestamp,  Flow Duration,  Total Fwd Packets,  Total Backward Packets, Total Length of Fwd Packets,  Total Length of Bwd Packets,  Fwd Packet Length Max,  Fwd Packet Length Min,  Fwd Packet Length Mean,  Fwd Packet Length Std, Bwd Packet Length Max,  Bwd Packet Length Min,  Bwd Packet Length Mean,  Bwd Packet Length Std, Flow Bytes/s,  Flow Packets/s,  Flow IAT Mean,  Flow IAT Std,  Flow IAT Max,  Flow IAT Min, Fwd IAT Total,  Fwd IAT Mean,  Fwd IAT Std,  Fwd IAT Max,  Fwd IAT Min, Bwd IAT Total,  Bwd IAT Mean,  Bwd IAT Std,  Bwd IAT Max,  Bwd IAT Min, Fwd PSH Flags,  Bwd PSH Flags,  Fwd URG Flags,  Bwd URG Flags,  Fwd Header Length,  Bwd Header Length, Fwd Packets/s,  Bwd Packets/s,  Min Packet Length,  Max Packet Length,  Packet Length Mean,  Packet Length Std,  Packet Length Variance, FIN Flag Count,  SYN Flag Count,  RST Flag Count,  PSH Flag Count,  ACK Flag Count,  URG Flag Count,  CWE Flag Count,  ECE Flag Count,  Down/Up Ratio,  Average Packet Size,  Avg Fwd Segment Size,  Avg Bwd Segment Size,  Fwd Header Length.1, Fwd Avg Bytes/Bulk,  Fwd Avg Packets/Bulk,  Fwd Avg Bulk Rate,  Bwd Avg Bytes/Bulk,  Bwd Avg Packets/Bulk, Bwd Avg Bulk Rate, Subflow Fwd Packets,  Subflow Fwd Bytes,  Subflow Bwd Packets,  Subflow Bwd Bytes, Init_Win_bytes_forward,  Init_Win_bytes_backward,  act_data_pkt_fwd,  min_seg_size_forward, Active Mean,  Active Std,  Active Max,  Active Min, Idle Mean,  Idle Std,  Idle Max,  Idle Min,  Label
+Chosen timestamp column: ' Timestamp'
+Chosen attack target candidate: ' Label'
+Timestamp parse rate: 100.0%
+Sample time range: 2017-07-07 01:00:00+00:00 -> 2017-07-07 01:43:00+00:00
+Unique minute bins in sample: 44
+Rows ordered by timestamp already: True
+10-minute bins with labels: 5
+Most-common label per 10-minute bin (top 20): [('BENIGN', 5)]
+Changes in dominant 10-minute-bin label: -1
+Distinct labels in sample: 2
+Label counts in sample (top 30):
+  'BENIGN': 29993
+  'PortScan': 7
+Columns inferred numeric by pandas: 80
+
+==============================================================================
+DATASET: CICIDS2017
+FILE: DATA\raw\CICID\Friday-WorkingHours-Morning.pcap_ISCX.csv
+Rows sampled: 30,000 (cap 30,000; not a full-file count)
+Columns (85): Flow ID,  Source IP,  Source Port,  Destination IP,  Destination Port,  Protocol,  Timestamp,  Flow Duration,  Total Fwd Packets,  Total Backward Packets, Total Length of Fwd Packets,  Total Length of Bwd Packets,  Fwd Packet Length Max,  Fwd Packet Length Min,  Fwd Packet Length Mean,  Fwd Packet Length Std, Bwd Packet Length Max,  Bwd Packet Length Min,  Bwd Packet Length Mean,  Bwd Packet Length Std, Flow Bytes/s,  Flow Packets/s,  Flow IAT Mean,  Flow IAT Std,  Flow IAT Max,  Flow IAT Min, Fwd IAT Total,  Fwd IAT Mean,  Fwd IAT Std,  Fwd IAT Max,  Fwd IAT Min, Bwd IAT Total,  Bwd IAT Mean,  Bwd IAT Std,  Bwd IAT Max,  Bwd IAT Min, Fwd PSH Flags,  Bwd PSH Flags,  Fwd URG Flags,  Bwd URG Flags,  Fwd Header Length,  Bwd Header Length, Fwd Packets/s,  Bwd Packets/s,  Min Packet Length,  Max Packet Length,  Packet Length Mean,  Packet Length Std,  Packet Length Variance, FIN Flag Count,  SYN Flag Count,  RST Flag Count,  PSH Flag Count,  ACK Flag Count,  URG Flag Count,  CWE Flag Count,  ECE Flag Count,  Down/Up Ratio,  Average Packet Size,  Avg Fwd Segment Size,  Avg Bwd Segment Size,  Fwd Header Length.1, Fwd Avg Bytes/Bulk,  Fwd Avg Packets/Bulk,  Fwd Avg Bulk Rate,  Bwd Avg Bytes/Bulk,  Bwd Avg Packets/Bulk, Bwd Avg Bulk Rate, Subflow Fwd Packets,  Subflow Fwd Bytes,  Subflow Bwd Packets,  Subflow Bwd Bytes, Init_Win_bytes_forward,  Init_Win_bytes_backward,  act_data_pkt_fwd,  min_seg_size_forward, Active Mean,  Active Std,  Active Max,  Active Min, Idle Mean,  Idle Std,  Idle Max,  Idle Min,  Label
+Chosen timestamp column: ' Timestamp'
+Chosen attack target candidate: ' Label'
+Timestamp parse rate: 100.0%
+Sample time range: 2017-07-07 08:59:00+00:00 -> 2017-07-07 09:41:00+00:00
+Unique minute bins in sample: 43
+Rows ordered by timestamp already: True
+10-minute bins with labels: 6
+Most-common label per 10-minute bin (top 20): [('BENIGN', 6)]
+Changes in dominant 10-minute-bin label: -1
+Distinct labels in sample: 2
+Label counts in sample (top 30):
+  'BENIGN': 29998
+  'Bot': 2
+Columns inferred numeric by pandas: 80
+
+==============================================================================
+DATASET: CICIDS2017
+FILE: DATA\raw\CICID\Monday-WorkingHours.pcap_ISCX.csv
+Rows sampled: 30,000 (cap 30,000; not a full-file count)
+Columns (85): Flow ID,  Source IP,  Source Port,  Destination IP,  Destination Port,  Protocol,  Timestamp,  Flow Duration,  Total Fwd Packets,  Total Backward Packets, Total Length of Fwd Packets,  Total Length of Bwd Packets,  Fwd Packet Length Max,  Fwd Packet Length Min,  Fwd Packet Length Mean,  Fwd Packet Length Std, Bwd Packet Length Max,  Bwd Packet Length Min,  Bwd Packet Length Mean,  Bwd Packet Length Std, Flow Bytes/s,  Flow Packets/s,  Flow IAT Mean,  Flow IAT Std,  Flow IAT Max,  Flow IAT Min, Fwd IAT Total,  Fwd IAT Mean,  Fwd IAT Std,  Fwd IAT Max,  Fwd IAT Min, Bwd IAT Total,  Bwd IAT Mean,  Bwd IAT Std,  Bwd IAT Max,  Bwd IAT Min, Fwd PSH Flags,  Bwd PSH Flags,  Fwd URG Flags,  Bwd URG Flags,  Fwd Header Length,  Bwd Header Length, Fwd Packets/s,  Bwd Packets/s,  Min Packet Length,  Max Packet Length,  Packet Length Mean,  Packet Length Std,  Packet Length Variance, FIN Flag Count,  SYN Flag Count,  RST Flag Count,  PSH Flag Count,  ACK Flag Count,  URG Flag Count,  CWE Flag Count,  ECE Flag Count,  Down/Up Ratio,  Average Packet Size,  Avg Fwd Segment Size,  Avg Bwd Segment Size,  Fwd Header Length.1, Fwd Avg Bytes/Bulk,  Fwd Avg Packets/Bulk,  Fwd Avg Bulk Rate,  Bwd Avg Bytes/Bulk,  Bwd Avg Packets/Bulk, Bwd Avg Bulk Rate, Subflow Fwd Packets,  Subflow Fwd Bytes,  Subflow Bwd Packets,  Subflow Bwd Bytes, Init_Win_bytes_forward,  Init_Win_bytes_backward,  act_data_pkt_fwd,  min_seg_size_forward, Active Mean,  Active Std,  Active Max,  Active Min, Idle Mean,  Idle Std,  Idle Max,  Idle Min,  Label
+Chosen timestamp column: ' Timestamp'
+Chosen attack target candidate: ' Label'
+Timestamp parse rate: 100.0%
+Sample time range: 2017-03-07 08:55:58+00:00 -> 2017-03-07 09:50:37+00:00
+Unique minute bins in sample: 56
+Rows ordered by timestamp already: False
+10-minute bins with labels: 7
+Most-common label per 10-minute bin (top 20): [('BENIGN', 7)]
+Changes in dominant 10-minute-bin label: -1
+Distinct labels in sample: 1
+Label counts in sample (top 30):
+  'BENIGN': 30000
+WARNING: Only one label appears in this sampled portion.
+Columns inferred numeric by pandas: 80
+
+==============================================================================
+DATASET: CICIDS2017
+FILE: DATA\raw\CICID\Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv
+Rows sampled: 30,000 (cap 30,000; not a full-file count)
+Columns (85): Flow ID,  Source IP,  Source Port,  Destination IP,  Destination Port,  Protocol,  Timestamp,  Flow Duration,  Total Fwd Packets,  Total Backward Packets, Total Length of Fwd Packets,  Total Length of Bwd Packets,  Fwd Packet Length Max,  Fwd Packet Length Min,  Fwd Packet Length Mean,  Fwd Packet Length Std, Bwd Packet Length Max,  Bwd Packet Length Min,  Bwd Packet Length Mean,  Bwd Packet Length Std, Flow Bytes/s,  Flow Packets/s,  Flow IAT Mean,  Flow IAT Std,  Flow IAT Max,  Flow IAT Min, Fwd IAT Total,  Fwd IAT Mean,  Fwd IAT Std,  Fwd IAT Max,  Fwd IAT Min, Bwd IAT Total,  Bwd IAT Mean,  Bwd IAT Std,  Bwd IAT Max,  Bwd IAT Min, Fwd PSH Flags,  Bwd PSH Flags,  Fwd URG Flags,  Bwd URG Flags,  Fwd Header Length,  Bwd Header Length, Fwd Packets/s,  Bwd Packets/s,  Min Packet Length,  Max Packet Length,  Packet Length Mean,  Packet Length Std,  Packet Length Variance, FIN Flag Count,  SYN Flag Count,  RST Flag Count,  PSH Flag Count,  ACK Flag Count,  URG Flag Count,  CWE Flag Count,  ECE Flag Count,  Down/Up Ratio,  Average Packet Size,  Avg Fwd Segment Size,  Avg Bwd Segment Size,  Fwd Header Length.1, Fwd Avg Bytes/Bulk,  Fwd Avg Packets/Bulk,  Fwd Avg Bulk Rate,  Bwd Avg Bytes/Bulk,  Bwd Avg Packets/Bulk, Bwd Avg Bulk Rate, Subflow Fwd Packets,  Subflow Fwd Bytes,  Subflow Bwd Packets,  Subflow Bwd Bytes, Init_Win_bytes_forward,  Init_Win_bytes_backward,  act_data_pkt_fwd,  min_seg_size_forward, Active Mean,  Active Std,  Active Max,  Active Min, Idle Mean,  Idle Std,  Idle Max,  Idle Min,  Label
+Chosen timestamp column: ' Timestamp'
+Chosen attack target candidate: ' Label'
+Timestamp parse rate: 100.0%
+Sample time range: 2017-06-07 01:00:00+00:00 -> 2017-06-07 01:38:00+00:00
+Unique minute bins in sample: 39
+Rows ordered by timestamp already: True
+10-minute bins with labels: 4
+Most-common label per 10-minute bin (top 20): [('BENIGN', 4)]
+Changes in dominant 10-minute-bin label: -1
+Distinct labels in sample: 1
+Label counts in sample (top 30):
+  'BENIGN': 30000
+WARNING: Only one label appears in this sampled portion.
+Columns inferred numeric by pandas: 80
+
+==============================================================================
+DATASET: CICIDS2017
+FILE: DATA\raw\CICID\Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv
+Rows sampled: 30,000 (cap 30,000; not a full-file count)
+Columns (85): Flow ID,  Source IP,  Source Port,  Destination IP,  Destination Port,  Protocol,  Timestamp,  Flow Duration,  Total Fwd Packets,  Total Backward Packets, Total Length of Fwd Packets,  Total Length of Bwd Packets,  Fwd Packet Length Max,  Fwd Packet Length Min,  Fwd Packet Length Mean,  Fwd Packet Length Std, Bwd Packet Length Max,  Bwd Packet Length Min,  Bwd Packet Length Mean,  Bwd Packet Length Std, Flow Bytes/s,  Flow Packets/s,  Flow IAT Mean,  Flow IAT Std,  Flow IAT Max,  Flow IAT Min, Fwd IAT Total,  Fwd IAT Mean,  Fwd IAT Std,  Fwd IAT Max,  Fwd IAT Min, Bwd IAT Total,  Bwd IAT Mean,  Bwd IAT Std,  Bwd IAT Max,  Bwd IAT Min, Fwd PSH Flags,  Bwd PSH Flags,  Fwd URG Flags,  Bwd URG Flags,  Fwd Header Length,  Bwd Header Length, Fwd Packets/s,  Bwd Packets/s,  Min Packet Length,  Max Packet Length,  Packet Length Mean,  Packet Length Std,  Packet Length Variance, FIN Flag Count,  SYN Flag Count,  RST Flag Count,  PSH Flag Count,  ACK Flag Count,  URG Flag Count,  CWE Flag Count,  ECE Flag Count,  Down/Up Ratio,  Average Packet Size,  Avg Fwd Segment Size,  Avg Bwd Segment Size,  Fwd Header Length.1, Fwd Avg Bytes/Bulk,  Fwd Avg Packets/Bulk,  Fwd Avg Bulk Rate,  Bwd Avg Bytes/Bulk,  Bwd Avg Packets/Bulk, Bwd Avg Bulk Rate, Subflow Fwd Packets,  Subflow Fwd Bytes,  Subflow Bwd Packets,  Subflow Bwd Bytes, Init_Win_bytes_forward,  Init_Win_bytes_backward,  act_data_pkt_fwd,  min_seg_size_forward, Active Mean,  Active Std,  Active Max,  Active Min, Idle Mean,  Idle Std,  Idle Max,  Idle Min,  Label
+Chosen timestamp column: ' Timestamp'
+Chosen attack target candidate: ' Label'
+Timestamp parse rate: 100.0%
+Sample time range: 2017-06-07 08:59:00+00:00 -> 2017-06-07 09:32:00+00:00
+Unique minute bins in sample: 34
+Rows ordered by timestamp already: True
+10-minute bins with labels: 5
+Most-common label per 10-minute bin (top 20): [('BENIGN', 5)]
+Changes in dominant 10-minute-bin label: -1
+Distinct labels in sample: 2
+Label counts in sample (top 30):
+  'BENIGN': 29582
+  'Web Attack � Brute Force': 418
+Columns inferred numeric by pandas: 80
+
+==============================================================================
+DATASET: CICIDS2017
+FILE: DATA\raw\CICID\Tuesday-WorkingHours.pcap_ISCX.csv
+Rows sampled: 30,000 (cap 30,000; not a full-file count)
+Columns (85): Flow ID,  Source IP,  Source Port,  Destination IP,  Destination Port,  Protocol,  Timestamp,  Flow Duration,  Total Fwd Packets,  Total Backward Packets, Total Length of Fwd Packets,  Total Length of Bwd Packets,  Fwd Packet Length Max,  Fwd Packet Length Min,  Fwd Packet Length Mean,  Fwd Packet Length Std, Bwd Packet Length Max,  Bwd Packet Length Min,  Bwd Packet Length Mean,  Bwd Packet Length Std, Flow Bytes/s,  Flow Packets/s,  Flow IAT Mean,  Flow IAT Std,  Flow IAT Max,  Flow IAT Min, Fwd IAT Total,  Fwd IAT Mean,  Fwd IAT Std,  Fwd IAT Max,  Fwd IAT Min, Bwd IAT Total,  Bwd IAT Mean,  Bwd IAT Std,  Bwd IAT Max,  Bwd IAT Min, Fwd PSH Flags,  Bwd PSH Flags,  Fwd URG Flags,  Bwd URG Flags,  Fwd Header Length,  Bwd Header Length, Fwd Packets/s,  Bwd Packets/s,  Min Packet Length,  Max Packet Length,  Packet Length Mean,  Packet Length Std,  Packet Length Variance, FIN Flag Count,  SYN Flag Count,  RST Flag Count,  PSH Flag Count,  ACK Flag Count,  URG Flag Count,  CWE Flag Count,  ECE Flag Count,  Down/Up Ratio,  Average Packet Size,  Avg Fwd Segment Size,  Avg Bwd Segment Size,  Fwd Header Length.1, Fwd Avg Bytes/Bulk,  Fwd Avg Packets/Bulk,  Fwd Avg Bulk Rate,  Bwd Avg Bytes/Bulk,  Bwd Avg Packets/Bulk, Bwd Avg Bulk Rate, Subflow Fwd Packets,  Subflow Fwd Bytes,  Subflow Bwd Packets,  Subflow Bwd Bytes, Init_Win_bytes_forward,  Init_Win_bytes_backward,  act_data_pkt_fwd,  min_seg_size_forward, Active Mean,  Active Std,  Active Max,  Active Min, Idle Mean,  Idle Std,  Idle Max,  Idle Min,  Label
+Chosen timestamp column: ' Timestamp'
+Chosen attack target candidate: ' Label'
+Timestamp parse rate: 100.0%
+Sample time range: 2017-04-07 08:53:00+00:00 -> 2017-04-07 10:30:00+00:00
+Unique minute bins in sample: 70
+Rows ordered by timestamp already: False
+10-minute bins with labels: 10
+Most-common label per 10-minute bin (top 20): [('BENIGN', 6), ('FTP-Patator', 4)]
+Changes in dominant 10-minute-bin label: 0
+Distinct labels in sample: 2
+Label counts in sample (top 30):
+  'BENIGN': 27343
+  'FTP-Patator': 2657
+Columns inferred numeric by pandas: 80
+
+==============================================================================
+DATASET: CICIDS2017
+FILE: DATA\raw\CICID\Wednesday-workingHours.pcap_ISCX.csv
+Rows sampled: 30,000 (cap 30,000; not a full-file count)
+Columns (85): Flow ID,  Source IP,  Source Port,  Destination IP,  Destination Port,  Protocol,  Timestamp,  Flow Duration,  Total Fwd Packets,  Total Backward Packets, Total Length of Fwd Packets,  Total Length of Bwd Packets,  Fwd Packet Length Max,  Fwd Packet Length Min,  Fwd Packet Length Mean,  Fwd Packet Length Std, Bwd Packet Length Max,  Bwd Packet Length Min,  Bwd Packet Length Mean,  Bwd Packet Length Std, Flow Bytes/s,  Flow Packets/s,  Flow IAT Mean,  Flow IAT Std,  Flow IAT Max,  Flow IAT Min, Fwd IAT Total,  Fwd IAT Mean,  Fwd IAT Std,  Fwd IAT Max,  Fwd IAT Min, Bwd IAT Total,  Bwd IAT Mean,  Bwd IAT Std,  Bwd IAT Max,  Bwd IAT Min, Fwd PSH Flags,  Bwd PSH Flags,  Fwd URG Flags,  Bwd URG Flags,  Fwd Header Length,  Bwd Header Length, Fwd Packets/s,  Bwd Packets/s,  Min Packet Length,  Max Packet Length,  Packet Length Mean,  Packet Length Std,  Packet Length Variance, FIN Flag Count,  SYN Flag Count,  RST Flag Count,  PSH Flag Count,  ACK Flag Count,  URG Flag Count,  CWE Flag Count,  ECE Flag Count,  Down/Up Ratio,  Average Packet Size,  Avg Fwd Segment Size,  Avg Bwd Segment Size,  Fwd Header Length.1, Fwd Avg Bytes/Bulk,  Fwd Avg Packets/Bulk,  Fwd Avg Bulk Rate,  Bwd Avg Bytes/Bulk,  Bwd Avg Packets/Bulk, Bwd Avg Bulk Rate, Subflow Fwd Packets,  Subflow Fwd Bytes,  Subflow Bwd Packets,  Subflow Bwd Bytes, Init_Win_bytes_forward,  Init_Win_bytes_backward,  act_data_pkt_fwd,  min_seg_size_forward, Active Mean,  Active Std,  Active Max,  Active Min, Idle Mean,  Idle Std,  Idle Max,  Idle Min,  Label
+Chosen timestamp column: ' Timestamp'
+Chosen attack target candidate: ' Label'
+Timestamp parse rate: 100.0%
+Sample time range: 2017-05-07 02:24:00+00:00 -> 2017-05-07 09:53:00+00:00
+Unique minute bins in sample: 74
+Rows ordered by timestamp already: False
+10-minute bins with labels: 9
+Most-common label per 10-minute bin (top 20): [('BENIGN', 8), ('DoS slowloris', 1)]
+Changes in dominant 10-minute-bin label: 0
+Distinct labels in sample: 2
+Label counts in sample (top 30):
+  'BENIGN': 29567
+  'DoS slowloris': 433
+Columns inferred numeric by pandas: 80
+
+==============================================================================
+DATASET: UNSW-NB15
+FILE: DATA\processed\UNSW\UNSW_NB15_training-set.csv
+Rows sampled: 30,000 (cap 30,000; not a full-file count)
+Columns (45): id, dur, proto, service, state, spkts, dpkts, sbytes, dbytes, rate, sttl, dttl, sload, dload, sloss, dloss, sinpkt, dinpkt, sjit, djit, swin, stcpb, dtcpb, dwin, tcprtt, synack, ackdat, smean, dmean, trans_depth, response_body_len, ct_srv_src, ct_state_ttl, ct_dst_ltm, ct_src_dport_ltm, ct_dst_sport_ltm, ct_dst_src_ltm, is_ftp_login, ct_ftp_cmd, ct_flw_http_mthd, ct_src_ltm, ct_srv_dst, is_sm_ips_ports, attack_cat, label
+Chosen timestamp column: None
+Chosen attack target candidate: 'label'
+WARNING: No timestamp column selected; inspect headers before temporal modeling.
+Distinct labels in sample: 2
+Label counts in sample (top 30):
+  '1': 23117
+  '0': 6883
+Columns inferred numeric by pandas: 41
+
+==============================================================================
+DATASET: UNSW-NB15
+FILE: DATA\processed\UNSW\UNSW_NB15_testing-set.csv
+Rows sampled: 30,000 (cap 30,000; not a full-file count)
+Columns (45): id, dur, proto, service, state, spkts, dpkts, sbytes, dbytes, rate, sttl, dttl, sload, dload, sloss, dloss, sinpkt, dinpkt, sjit, djit, swin, stcpb, dtcpb, dwin, tcprtt, synack, ackdat, smean, dmean, trans_depth, response_body_len, ct_srv_src, ct_state_ttl, ct_dst_ltm, ct_src_dport_ltm, ct_dst_sport_ltm, ct_dst_src_ltm, is_ftp_login, ct_ftp_cmd, ct_flw_http_mthd, ct_src_ltm, ct_srv_dst, is_sm_ips_ports, attack_cat, label
+Chosen timestamp column: None
+Chosen attack target candidate: 'label'
+WARNING: No timestamp column selected; inspect headers before temporal modeling.
+Distinct labels in sample: 1
+Label counts in sample (top 30):
+  '0': 30000
+WARNING: Only one label appears in this sampled portion.
+Columns inferred numeric by pandas: 41
+
+==============================================================================
+DATASET: TON_IoT
+FILE: DATA\raw\TON_IoT\Network\train_test_network.csv
+Rows sampled: 30,000 (cap 30,000; not a full-file count)
+Columns (44): src_ip, src_port, dst_ip, dst_port, proto, service, duration, src_bytes, dst_bytes, conn_state, missed_bytes, src_pkts, src_ip_bytes, dst_pkts, dst_ip_bytes, dns_query, dns_qclass, dns_qtype, dns_rcode, dns_AA, dns_RD, dns_RA, dns_rejected, ssl_version, ssl_cipher, ssl_resumed, ssl_established, ssl_subject, ssl_issuer, http_trans_depth, http_method, http_uri, http_version, http_request_body_len, http_response_body_len, http_status_code, http_user_agent, http_orig_mime_types, http_resp_mime_types, weird_name, weird_addl, weird_notice, label, type
+Chosen timestamp column: None
+Chosen attack target candidate: 'type'
+WARNING: No timestamp column selected; inspect headers before temporal modeling.
+Distinct labels in sample: 2
+Label counts in sample (top 30):
+  'backdoor': 20000
+  'ddos': 10000
+Columns inferred numeric by pandas: 17

@@ -1,0 +1,51 @@
+{
+  "task": "predict attack label in the next consecutive minute",
+  "dataset": "CICIDS2017",
+  "window_minutes": 10,
+  "features_per_minute": 79,
+  "flattened_input_features": 790,
+  "train_samples": 1604,
+  "validation_samples": 287,
+  "test_samples": 293,
+  "training_classes": [
+    "BENIGN",
+    "Bot",
+    "DDoS",
+    "DoS Slowhttptest",
+    "DoS slowloris",
+    "FTP-Patator",
+    "Heartbleed",
+    "Infiltration",
+    "PortScan",
+    "SSH-Patator",
+    "Web Attack \ufffd Brute Force",
+    "Web Attack \ufffd Sql Injection",
+    "Web Attack \ufffd XSS"
+  ],
+  "classes_unseen_in_validation_training": [
+    "DoS GoldenEye",
+    "DoS Hulk"
+  ],
+  "classes_unseen_in_test_training": [],
+  "selected_max_depth": 4,
+  "selection_metric": "validation macro F1",
+  "validation_metrics": {
+    "accuracy": 0.6759581881533101,
+    "balanced_accuracy": 0.14057971014492754,
+    "macro_f1": 0.08185654008438818
+  },
+  "majority_baseline_validation_metrics": {
+    "accuracy": 0.0,
+    "balanced_accuracy": 0.0,
+    "macro_f1": 0.0
+  },
+  "test_metrics": {
+    "accuracy": 0.7781569965870307,
+    "balanced_accuracy": 0.2846441947565543,
+    "macro_f1": 0.1464354527938343
+  },
+  "model_file": "future_attack_xgboost.joblib",
+  "label_encoder_file": "label_encoder.joblib",
+  "xgboost_version": "3.2.0",
+  "sklearn_version": "1.9.1"
+}

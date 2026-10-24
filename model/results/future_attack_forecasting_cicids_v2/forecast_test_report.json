@@ -1,0 +1,142 @@
+{
+  "metrics": {
+    "accuracy": 0.7781569965870307,
+    "balanced_accuracy": 0.2846441947565543,
+    "macro_f1": 0.1464354527938343
+  },
+  "classification_report": {
+    "BENIGN": {
+      "precision": 0.9047619047619048,
+      "recall": 0.8539325842696629,
+      "f1-score": 0.8786127167630058,
+      "support": 267.0
+    },
+    "Bot": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 23.0
+    },
+    "DDoS": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "Infiltration": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "PortScan": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 3.0
+    },
+    "SSH-Patator": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 0.0
+    },
+    "accuracy": 0.7781569965870307,
+    "macro avg": {
+      "precision": 0.15079365079365079,
+      "recall": 0.14232209737827714,
+      "f1-score": 0.1464354527938343,
+      "support": 293.0
+    },
+    "weighted avg": {
+      "precision": 0.8244758654314969,
+      "recall": 0.7781569965870307,
+      "f1-score": 0.8006470831935923,
+      "support": 293.0
+    }
+  },
+  "confusion_matrix_labels": [
+    "BENIGN",
+    "Bot",
+    "DDoS",
+    "Infiltration",
+    "PortScan",
+    "SSH-Patator"
+  ],
+  "confusion_matrix": [
+    [
+      228,
+      0,
+      4,
+      1,
+      0,
+      34
+    ],
+    [
+      21,
+      0,
+      0,
+      2,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      3,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "validation_candidates": [
+    {
+      "max_depth": 4,
+      "validation_metrics": {
+        "accuracy": 0.6759581881533101,
+        "balanced_accuracy": 0.14057971014492754,
+        "macro_f1": 0.08185654008438818
+      }
+    },
+    {
+      "max_depth": 3,
+      "validation_metrics": {
+        "accuracy": 0.6411149825783972,
+        "balanced_accuracy": 0.13333333333333333,
+        "macro_f1": 0.07931034482758621
+      }
+    },
+    {
+      "max_depth": 2,
+      "validation_metrics": {
+        "accuracy": 0.4912891986062718,
+        "balanced_accuracy": 0.10217391304347827,
+        "macro_f1": 0.05227062094531974
+      }
+    }
+  ]
+}

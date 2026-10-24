@@ -1,0 +1,170 @@
+CICIDS2017 FULL-CAPTURE TEMPORAL VERIFICATION
+Read-only full-file scan. No training, resampling, or model/data changes.
+Each capture is analyzed separately; no raw/processed duplicates are included.
+
+============================================================================
+FILE: Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv
+Rows scanned: 225,745
+Timestamp column: ' Timestamp'
+Label column: ' Label'
+Valid timestamps: 225,745/225,745 (100.00%)
+Invalid timestamps: 0
+Out-of-order timestamp rows: 0
+Timestamp range: 2017-07-07 03:30:00 -> 2017-07-07 05:02:00
+BENIGN rows: 97,718
+Non-BENIGN rows: 128,027
+Unique labels (2):
+  BENIGN: 97,718
+  DDoS: 128,027
+Occupied minute bins: 93
+Occupied 10-minute bins: 10
+10-minute bins containing any non-BENIGN row: 3
+Changes in dominant label across consecutive occupied 10-minute bins: 2
+Elapsed seconds: 4.32
+
+============================================================================
+FILE: Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv
+Rows scanned: 286,467
+Timestamp column: ' Timestamp'
+Label column: ' Label'
+Valid timestamps: 286,467/286,467 (100.00%)
+Invalid timestamps: 0
+Out-of-order timestamp rows: 0
+Timestamp range: 2017-07-07 01:00:00 -> 2017-07-07 03:29:00
+BENIGN rows: 127,537
+Non-BENIGN rows: 158,930
+Unique labels (2):
+  BENIGN: 127,537
+  PortScan: 158,930
+Occupied minute bins: 150
+Occupied 10-minute bins: 15
+10-minute bins containing any non-BENIGN row: 8
+Changes in dominant label across consecutive occupied 10-minute bins: 2
+Elapsed seconds: 5.96
+
+============================================================================
+FILE: Friday-WorkingHours-Morning.pcap_ISCX.csv
+Rows scanned: 191,033
+Timestamp column: ' Timestamp'
+Label column: ' Label'
+Valid timestamps: 191,033/191,033 (100.00%)
+Invalid timestamps: 0
+Out-of-order timestamp rows: 0
+Timestamp range: 2017-07-07 08:59:00 -> 2017-07-07 12:59:00
+BENIGN rows: 189,067
+Non-BENIGN rows: 1,966
+Unique labels (2):
+  BENIGN: 189,067
+  Bot: 1,966
+Occupied minute bins: 241
+Occupied 10-minute bins: 25
+10-minute bins containing any non-BENIGN row: 19
+Changes in dominant label across consecutive occupied 10-minute bins: 0
+Elapsed seconds: 3.66
+
+============================================================================
+FILE: Monday-WorkingHours.pcap_ISCX.csv
+Rows scanned: 529,918
+Timestamp column: ' Timestamp'
+Label column: ' Label'
+Valid timestamps: 529,918/529,918 (100.00%)
+Invalid timestamps: 0
+Out-of-order timestamp rows: 208,847
+Timestamp range: 2017-03-07 01:00:01 -> 2017-03-07 12:59:58
+BENIGN rows: 529,918
+Non-BENIGN rows: 0
+Unique labels (1):
+  BENIGN: 529,918
+Occupied minute bins: 487
+Occupied 10-minute bins: 50
+10-minute bins containing any non-BENIGN row: 0
+Changes in dominant label across consecutive occupied 10-minute bins: 0
+Elapsed seconds: 8.31
+
+============================================================================
+FILE: Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv
+Rows scanned: 288,602
+Timestamp column: ' Timestamp'
+Label column: ' Label'
+Valid timestamps: 288,602/288,602 (100.00%)
+Invalid timestamps: 0
+Out-of-order timestamp rows: 0
+Timestamp range: 2017-06-07 01:00:00 -> 2017-06-07 05:04:00
+BENIGN rows: 288,566
+Non-BENIGN rows: 36
+Unique labels (2):
+  BENIGN: 288,566
+  Infiltration: 36
+Occupied minute bins: 245
+Occupied 10-minute bins: 25
+10-minute bins containing any non-BENIGN row: 9
+Changes in dominant label across consecutive occupied 10-minute bins: 0
+Elapsed seconds: 4.71
+
+============================================================================
+FILE: Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv
+Rows scanned: 458,968
+Timestamp column: ' Timestamp'
+Label column: ' Label'
+Valid timestamps: 170,366/458,968 (37.12%)
+Invalid timestamps: 288,602
+Out-of-order timestamp rows: 0
+Timestamp range: 2017-06-07 08:59:00 -> 2017-06-07 12:59:00
+BENIGN rows: 168,186
+Non-BENIGN rows: 290,782
+Unique labels (5):
+  BENIGN: 168,186
+  MISSING_LABEL: 288,602
+  Web Attack � Brute Force: 1,507
+  Web Attack � Sql Injection: 21
+  Web Attack � XSS: 652
+Occupied minute bins: 241
+Occupied 10-minute bins: 25
+10-minute bins containing any non-BENIGN row: 10
+Changes in dominant label across consecutive occupied 10-minute bins: 0
+Elapsed seconds: 6.66
+
+============================================================================
+FILE: Tuesday-WorkingHours.pcap_ISCX.csv
+Rows scanned: 445,909
+Timestamp column: ' Timestamp'
+Label column: ' Label'
+Valid timestamps: 445,909/445,909 (100.00%)
+Invalid timestamps: 0
+Out-of-order timestamp rows: 159,424
+Timestamp range: 2017-04-07 01:00:00 -> 2017-04-07 12:59:00
+BENIGN rows: 432,074
+Non-BENIGN rows: 13,835
+Unique labels (3):
+  BENIGN: 432,074
+  FTP-Patator: 7,938
+  SSH-Patator: 5,897
+Occupied minute bins: 488
+Occupied 10-minute bins: 50
+10-minute bins containing any non-BENIGN row: 17
+Changes in dominant label across consecutive occupied 10-minute bins: 0
+Elapsed seconds: 7.32
+
+============================================================================
+FILE: Wednesday-workingHours.pcap_ISCX.csv
+Rows scanned: 692,703
+Timestamp column: ' Timestamp'
+Label column: ' Label'
+Valid timestamps: 692,703/692,703 (100.00%)
+Invalid timestamps: 0
+Out-of-order timestamp rows: 163,908
+Timestamp range: 2017-05-07 01:00:00 -> 2017-05-07 12:59:00
+BENIGN rows: 440,031
+Non-BENIGN rows: 252,672
+Unique labels (6):
+  BENIGN: 440,031
+  DoS GoldenEye: 10,293
+  DoS Hulk: 231,073
+  DoS Slowhttptest: 5,499
+  DoS slowloris: 5,796
+  Heartbleed: 11
+Occupied minute bins: 509
+Occupied 10-minute bins: 52
+10-minute bins containing any non-BENIGN row: 15
+Changes in dominant label across consecutive occupied 10-minute bins: 4
+Elapsed seconds: 12.79

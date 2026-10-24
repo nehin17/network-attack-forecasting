@@ -1,0 +1,24 @@
+Weighted Temporal XGBoost with early stopping
+Best iteration: 187
+Accuracy: 0.9053
+Macro Precision: 0.1010
+Macro Recall: 0.0842
+Macro F1: 0.0899
+Weighted F1: 0.9068
+
+Per-class results:
+BENIGN                         P=0.943 R=0.955 F1=0.949 Support=156
+Bot                            P=0.571 R=0.308 F1=0.400 Support=13
+DDoS                           P=0.000 R=0.000 F1=0.000 Support=0
+DoS GoldenEye                  P=0.000 R=0.000 F1=0.000 Support=0
+DoS Hulk                       P=0.000 R=0.000 F1=0.000 Support=0
+DoS Slowhttptest               P=0.000 R=0.000 F1=0.000 Support=0
+DoS slowloris                  P=0.000 R=0.000 F1=0.000 Support=0
+FTP-Patator                    P=0.000 R=0.000 F1=0.000 Support=0
+Heartbleed                     P=0.000 R=0.000 F1=0.000 Support=0
+Infiltration                   P=0.000 R=0.000 F1=0.000 Support=0
+PortScan                       P=0.000 R=0.000 F1=0.000 Support=0
+SSH-Patator                    P=0.000 R=0.000 F1=0.000 Support=0
+Web Attack - Brute Force       P=0.000 R=0.000 F1=0.000 Support=0
+Web Attack - Sql Injection     P=0.000 R=0.000 F1=0.000 Support=0
+Web Attack - XSS               P=0.000 R=0.000 F1=0.000 Support=0

@@ -16,3 +16,16 @@ DATA/processed/
 # OS / IDE
 .DS_Store/
 .vscode/
+# Never push datasets, including any other DATA subfolders
+/DATA/
+
+# Model artifacts and experiment outputs can contain large files
+# Review before committing; uncomment if you want to keep them local
+# model/artifacts/
+# model/results/
+
+# Local secrets
+.env
+.env.*
+!.env.example
+

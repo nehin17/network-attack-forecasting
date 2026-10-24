@@ -1,0 +1,42 @@
+CICIDS FUTURE-ATTACK-TYPE DATASET SUMMARY
+Dataset directory: C:\Users\Neha\Desktop\semester 07\minor project (4)\network-attack-forecasting\DATA\processed\future_attack_forecasting_cicids_v2
+History: 10 consecutive minutes
+Target: next consecutive minute
+Split: chronological within each capture, 70% / 15% / 15%
+
+SPLIT CLASS COUNTS:
+TRAIN:
+  BENIGN: 1,202
+  Bot: 100
+  DDoS: 21
+  DoS Slowhttptest: 10
+  DoS slowloris: 27
+  FTP-Patator: 64
+  Heartbleed: 11
+  Infiltration: 28
+  PortScan: 10
+  SSH-Patator: 63
+  Web Attack � Brute Force: 44
+  Web Attack � Sql Injection: 3
+  Web Attack � XSS: 21
+VAL:
+  BENIGN: 230
+  Bot: 24
+  DoS GoldenEye: 8
+  DoS Hulk: 21
+  DoS Slowhttptest: 1
+  PortScan: 3
+TEST:
+  BENIGN: 267
+  Bot: 23
+  PortScan: 3
+
+CAPTURE TIMESTAMP SUMMARY:
+Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv: status=OK; empty_rows_skipped=0; invalid_timestamp_rows=0; minutes=93
+Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv: status=OK; empty_rows_skipped=0; invalid_timestamp_rows=0; minutes=150
+Friday-WorkingHours-Morning.pcap_ISCX.csv: status=OK; empty_rows_skipped=0; invalid_timestamp_rows=0; minutes=241
+Monday-WorkingHours.pcap_ISCX.csv: status=OK; empty_rows_skipped=0; invalid_timestamp_rows=0; minutes=487
+Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv: status=OK; empty_rows_skipped=0; invalid_timestamp_rows=0; minutes=245
+Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv: status=OK; empty_rows_skipped=288602; invalid_timestamp_rows=0; minutes=241
+Tuesday-WorkingHours.pcap_ISCX.csv: status=OK; empty_rows_skipped=0; invalid_timestamp_rows=0; minutes=488
+Wednesday-workingHours.pcap_ISCX.csv: status=OK; empty_rows_skipped=0; invalid_timestamp_rows=0; minutes=509

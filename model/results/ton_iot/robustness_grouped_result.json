@@ -1,0 +1,14 @@
+{
+  "output": "attack_type",
+  "model": "XGBoost",
+  "dataset": "TON_IoT",
+  "evaluation": "grouped_by_source_ip",
+  "accuracy": 0.9585119798234553,
+  "macro_precision": 0.2174093295156287,
+  "macro_recall": 0.34856273290900447,
+  "macro_f1": 0.19839658056636514,
+  "train_seconds": 44.97,
+  "train_rows": 182544,
+  "test_rows": 7930,
+  "unseen_test_source_ips": 11
+}

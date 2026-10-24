@@ -1,0 +1,9 @@
+file,status,rows,timestamp_column,label_column,valid_timestamps,invalid_timestamps,out_of_order_rows,classes,benign_rows,nonbenign_rows,minute_bins,ten_minute_bins,ten_minute_bins_with_attack,dominant_label_changes,first_timestamp,last_timestamp,elapsed_seconds
+Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv,OK,225745, Timestamp, Label,225745,0,0,2,97718,128027,93,10,3,2,2017-07-07 03:30:00,2017-07-07 05:02:00,4.32
+Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,OK,286467, Timestamp, Label,286467,0,0,2,127537,158930,150,15,8,2,2017-07-07 01:00:00,2017-07-07 03:29:00,5.96
+Friday-WorkingHours-Morning.pcap_ISCX.csv,OK,191033, Timestamp, Label,191033,0,0,2,189067,1966,241,25,19,0,2017-07-07 08:59:00,2017-07-07 12:59:00,3.66
+Monday-WorkingHours.pcap_ISCX.csv,OK,529918, Timestamp, Label,529918,0,208847,1,529918,0,487,50,0,0,2017-03-07 01:00:01,2017-03-07 12:59:58,8.31
+Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv,OK,288602, Timestamp, Label,288602,0,0,2,288566,36,245,25,9,0,2017-06-07 01:00:00,2017-06-07 05:04:00,4.71
+Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv,OK,458968, Timestamp, Label,170366,288602,0,5,168186,290782,241,25,10,0,2017-06-07 08:59:00,2017-06-07 12:59:00,6.66
+Tuesday-WorkingHours.pcap_ISCX.csv,OK,445909, Timestamp, Label,445909,0,159424,3,432074,13835,488,50,17,0,2017-04-07 01:00:00,2017-04-07 12:59:00,7.32
+Wednesday-workingHours.pcap_ISCX.csv,OK,692703, Timestamp, Label,692703,0,163908,6,440031,252672,509,52,15,4,2017-05-07 01:00:00,2017-05-07 12:59:00,12.79

@@ -1,0 +1,144 @@
+[
+  {
+    "capture": "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv",
+    "source_rows": 225745,
+    "empty_rows_skipped": 0,
+    "invalid_timestamp_rows_after_cleanup": 0,
+    "valid_timestamps": 225745,
+    "minute_bins": 93,
+    "classes": {
+      "BENIGN": 72,
+      "DDoS": 21
+    },
+    "first_minute": "2017-07-07 03:30:00",
+    "last_minute": "2017-07-07 05:02:00",
+    "feature_count": 79,
+    "elapsed_seconds": 9.89,
+    "status": "OK"
+  },
+  {
+    "capture": "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv",
+    "source_rows": 286467,
+    "empty_rows_skipped": 0,
+    "invalid_timestamp_rows_after_cleanup": 0,
+    "valid_timestamps": 286467,
+    "minute_bins": 150,
+    "classes": {
+      "BENIGN": 123,
+      "PortScan": 27
+    },
+    "first_minute": "2017-07-07 01:00:00",
+    "last_minute": "2017-07-07 03:29:00",
+    "feature_count": 79,
+    "elapsed_seconds": 11.69,
+    "status": "OK"
+  },
+  {
+    "capture": "Friday-WorkingHours-Morning.pcap_ISCX.csv",
+    "source_rows": 191033,
+    "empty_rows_skipped": 0,
+    "invalid_timestamp_rows_after_cleanup": 0,
+    "valid_timestamps": 191033,
+    "minute_bins": 241,
+    "classes": {
+      "BENIGN": 78,
+      "Bot": 163
+    },
+    "first_minute": "2017-07-07 08:59:00",
+    "last_minute": "2017-07-07 12:59:00",
+    "feature_count": 79,
+    "elapsed_seconds": 7.54,
+    "status": "OK"
+  },
+  {
+    "capture": "Monday-WorkingHours.pcap_ISCX.csv",
+    "source_rows": 529918,
+    "empty_rows_skipped": 0,
+    "invalid_timestamp_rows_after_cleanup": 0,
+    "valid_timestamps": 529918,
+    "minute_bins": 487,
+    "classes": {
+      "BENIGN": 487
+    },
+    "first_minute": "2017-03-07 01:00:00",
+    "last_minute": "2017-03-07 12:59:00",
+    "feature_count": 79,
+    "elapsed_seconds": 30.99,
+    "status": "OK"
+  },
+  {
+    "capture": "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv",
+    "source_rows": 288602,
+    "empty_rows_skipped": 0,
+    "invalid_timestamp_rows_after_cleanup": 0,
+    "valid_timestamps": 288602,
+    "minute_bins": 245,
+    "classes": {
+      "BENIGN": 217,
+      "Infiltration": 28
+    },
+    "first_minute": "2017-06-07 01:00:00",
+    "last_minute": "2017-06-07 05:04:00",
+    "feature_count": 79,
+    "elapsed_seconds": 11.75,
+    "status": "OK"
+  },
+  {
+    "capture": "Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv",
+    "source_rows": 458968,
+    "empty_rows_skipped": 288602,
+    "invalid_timestamp_rows_after_cleanup": 0,
+    "valid_timestamps": 170366,
+    "minute_bins": 241,
+    "classes": {
+      "BENIGN": 173,
+      "Web Attack \ufffd Brute Force": 44,
+      "Web Attack \ufffd Sql Injection": 3,
+      "Web Attack \ufffd XSS": 21
+    },
+    "first_minute": "2017-06-07 08:59:00",
+    "last_minute": "2017-06-07 12:59:00",
+    "feature_count": 79,
+    "elapsed_seconds": 13.02,
+    "status": "OK"
+  },
+  {
+    "capture": "Tuesday-WorkingHours.pcap_ISCX.csv",
+    "source_rows": 445909,
+    "empty_rows_skipped": 0,
+    "invalid_timestamp_rows_after_cleanup": 0,
+    "valid_timestamps": 445909,
+    "minute_bins": 488,
+    "classes": {
+      "BENIGN": 361,
+      "FTP-Patator": 64,
+      "SSH-Patator": 63
+    },
+    "first_minute": "2017-04-07 01:00:00",
+    "last_minute": "2017-04-07 12:59:00",
+    "feature_count": 79,
+    "elapsed_seconds": 21.33,
+    "status": "OK"
+  },
+  {
+    "capture": "Wednesday-workingHours.pcap_ISCX.csv",
+    "source_rows": 692703,
+    "empty_rows_skipped": 0,
+    "invalid_timestamp_rows_after_cleanup": 0,
+    "valid_timestamps": 692703,
+    "minute_bins": 509,
+    "classes": {
+      "BENIGN": 423,
+      "DoS GoldenEye": 8,
+      "DoS Hulk": 21,
+      "DoS Slowhttptest": 19,
+      "DoS slowloris": 27,
+      "Heartbleed": 11
+    },
+    "first_minute": "2017-05-07 01:00:00",
+    "last_minute": "2017-05-07 12:59:00",
+    "feature_count": 79,
+    "elapsed_seconds": 35.8,
+    "status": "OK"
+  }
+]
