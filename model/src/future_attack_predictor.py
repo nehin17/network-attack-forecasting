@@ -1,171 +1,58 @@
-import os
+"""Binary next-minute CICIDS2017 attack forecaster.
+
+Input contract:
+    sequence: array-like, shape (history_minutes, number_of_saved_feature_columns)
+    Each row is one consecutive minute of aggregate numeric CICIDS flow features,
+    including flow_count, in the exact feature_columns order stored in the bundle.
+"""
+from pathlib import Path
+import joblib
 import numpy as np
-import xgboost as xgb
 
-
-BASE_DIR = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), "..", "..")
-)
-
-MODEL_PATH = os.path.join(
-    BASE_DIR,
-    "model",
-    "results",
-    "xgboost",
-    "xgboost_temporal.json"
-)
-
-FEATURE_PATH = os.path.join(
-    BASE_DIR,
-    "DATA",
-    "processed",
-    "CICIDS",
-    "cicids_selected_features.txt"
-)
-
-CLASS_PATH = os.path.join(
-    BASE_DIR,
-    "DATA",
-    "processed",
-    "CICIDS",
-    "multiclass_classes.npy"
-)
-
-
-HISTORY_MINUTES = 10
-NUM_FEATURES = 70
+ROOT = Path(__file__).resolve().parents[2]
+MODEL_PATH = ROOT / "model" / "artifacts" / "cicids_binary_forecast" / "final_binary_forecaster.joblib"
 
 
 class FutureAttackPredictor:
-
-    def __init__(self):
-
-        self.features = self._load_features()
-        self.classes = np.load(
-            CLASS_PATH,
-            allow_pickle=True
-        )
-
-        self.model = xgb.XGBClassifier()
-        self.model.load_model(MODEL_PATH)
-
-    def _load_features(self):
-
-        with open(
-            FEATURE_PATH,
-            "r",
-            encoding="utf-8"
-        ) as f:
-
-            features = [
-                line.strip()
-                for line in f
-                if line.strip()
-            ]
-
-        if len(features) != NUM_FEATURES:
-            raise ValueError(
-                f"Expected {NUM_FEATURES} features, "
-                f"found {len(features)}"
+    def __init__(self, model_path=MODEL_PATH):
+        if not Path(model_path).exists():
+            raise FileNotFoundError(
+                f"Binary forecaster bundle not found: {model_path}. "
+                "Run model/src/finalize_cicids_binary_forecaster.py first."
             )
+        bundle = joblib.load(model_path)
+        self.model = bundle["model"]
+        self.threshold = float(bundle["threshold"])
+        self.feature_columns = list(bundle["feature_columns"])
+        self.history_minutes = int(bundle.get("history_minutes", 10))
+        self.selected_model = bundle.get("selected_model", "xgboost")
 
-        return features
-
-    def _create_temporal_features(self, sequence):
-
-        sequence = np.asarray(
-            sequence,
-            dtype=np.float32
-        )
-
-        if sequence.shape != (
-            HISTORY_MINUTES,
-            NUM_FEATURES
-        ):
+    def _engineer(self, sequence):
+        seq = np.asarray(sequence, dtype=np.float32)
+        expected = (self.history_minutes, len(self.feature_columns))
+        if seq.shape != expected:
             raise ValueError(
-                "Expected input shape "
-                f"({HISTORY_MINUTES}, {NUM_FEATURES}), "
-                f"got {sequence.shape}"
+                f"Expected sequence shape {expected} (history minutes x saved feature count), "
+                f"received {seq.shape}. The old 10x70 multiclass sequence is not compatible "
+                "with this binary model; supply per-minute aggregates in the saved schema."
             )
-
-        last = sequence[-1]
-
-        mean = np.mean(
-            sequence,
-            axis=0
-        )
-
-        std = np.std(
-            sequence,
-            axis=0
-        )
-
-        delta = (
-            sequence[-1]
-            - sequence[0]
-        )
-
-        temporal_features = np.concatenate(
-            [
-                last,
-                mean,
-                std,
-                delta
-            ]
-        )
-
-        return temporal_features.reshape(
-            1, -1
-        )
+        seq = np.nan_to_num(seq, nan=0.0, posinf=0.0, neginf=0.0)
+        engineered = np.concatenate([
+            seq[-1],
+            seq.mean(axis=0),
+            seq.std(axis=0),
+            seq[-1] - seq[0],
+        ])
+        return engineered.reshape(1, -1)
 
     def predict(self, sequence):
-
-        X = self._create_temporal_features(
-            sequence
-        )
-
-        probabilities = self.model.predict_proba(X)[0]
-
-        prediction_index = int(
-            np.argmax(probabilities)
-        )
-
-        prediction = self.classes[
-            prediction_index
-        ]
-
-        confidence = float(
-            probabilities[prediction_index]
-        )
-
+        X = self._engineer(sequence)
+        attack_probability = float(self.model.predict_proba(X)[0, 1])
+        is_attack = attack_probability >= self.threshold
         return {
-            "future_attack_type": str(
-                prediction
-            ),
-            "confidence": confidence
+            "future_attack_type": "ATTACK" if is_attack else "BENIGN",
+            "confidence": attack_probability if is_attack else 1.0 - attack_probability,
+            "attack_probability": attack_probability,
+            "threshold": self.threshold,
+            "model": self.selected_model,
         }
-
-
-if __name__ == "__main__":
-
-    predictor = FutureAttackPredictor()
-
-    dummy_sequence = np.zeros(
-        (10, 70),
-        dtype=np.float32
-    )
-
-    result = predictor.predict(
-        dummy_sequence
-    )
-
-    print("\nFuture Attack Prediction")
-    print("=" * 40)
-    print(
-        f"Prediction : "
-        f"{result['future_attack_type']}"
-    )
-    print(
-        f"Confidence : "
-        f"{result['confidence']:.4f}"
-    )

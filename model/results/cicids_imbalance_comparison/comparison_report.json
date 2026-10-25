@@ -1,0 +1,122 @@
+{
+  "dataset": "CICIDS2017",
+  "task": "binary next-minute attack forecasting",
+  "history_minutes": 10,
+  "split": "per-capture chronological 70/15/15; resampling on train only",
+  "selection_rule": "threshold: maximize validation precision subject to validation recall >= 0.90 (fallback highest validation recall); model: validation recall then precision and F1; test not used for selection",
+  "winner_by_validation": "xgboost_random_oversampling",
+  "saved_model_bundle": "C:\\Users\\Neha\\Desktop\\semester 07\\minor project (4)\\network-attack-forecasting\\model\\artifacts\\cicids_binary_forecast\\final_binary_forecaster.joblib",
+  "experiments": [
+    {
+      "model": "xgboost_random_oversampling",
+      "threshold_selected_on_validation": 0.01,
+      "validation_precision": 0.23275862068965517,
+      "validation_recall": 0.9473684210526315,
+      "validation_f1": 0.3737024221453287,
+      "threshold_selection_rule": "highest validation precision among thresholds with validation recall >= 0.90",
+      "validation_recall_target": 0.9,
+      "test_accuracy": 0.20136518771331058,
+      "test_attack_precision": 0.1,
+      "test_attack_recall": 1.0,
+      "test_attack_f1": 0.18181818181818182,
+      "test_macro_f1": 0.20090909090909093,
+      "test_roc_auc": 0.798040910400461,
+      "test_pr_auc_average_precision": 0.2546678859013963,
+      "test_confusion_matrix_labels_0_1": [
+        [
+          33,
+          234
+        ],
+        [
+          0,
+          26
+        ]
+      ],
+      "test_classification_report": {
+        "BENIGN": {
+          "precision": 1.0,
+          "recall": 0.12359550561797752,
+          "f1-score": 0.22,
+          "support": 267.0
+        },
+        "ATTACK": {
+          "precision": 0.1,
+          "recall": 1.0,
+          "f1-score": 0.18181818181818182,
+          "support": 26.0
+        },
+        "accuracy": 0.20136518771331058,
+        "macro avg": {
+          "precision": 0.55,
+          "recall": 0.5617977528089888,
+          "f1-score": 0.20090909090909093,
+          "support": 293.0
+        },
+        "weighted avg": {
+          "precision": 0.9201365187713312,
+          "recall": 0.20136518771331058,
+          "f1-score": 0.21661185231151103,
+          "support": 293.0
+        }
+      }
+    },
+    {
+      "model": "xgboost_class_weight",
+      "threshold_selected_on_validation": 0.01,
+      "validation_precision": 0.22844827586206898,
+      "validation_recall": 0.9298245614035088,
+      "validation_f1": 0.36678200692041524,
+      "threshold_selection_rule": "highest validation precision among thresholds with validation recall >= 0.90",
+      "validation_recall_target": 0.9,
+      "test_accuracy": 0.18430034129692832,
+      "test_attack_precision": 0.09811320754716982,
+      "test_attack_recall": 1.0,
+      "test_attack_f1": 0.17869415807560138,
+      "test_macro_f1": 0.18426233327508884,
+      "test_roc_auc": 0.8130221838087007,
+      "test_pr_auc_average_precision": 0.291704270791033,
+      "test_confusion_matrix_labels_0_1": [
+        [
+          28,
+          239
+        ],
+        [
+          0,
+          26
+        ]
+      ],
+      "test_classification_report": {
+        "BENIGN": {
+          "precision": 1.0,
+          "recall": 0.10486891385767791,
+          "f1-score": 0.18983050847457628,
+          "support": 267.0
+        },
+        "ATTACK": {
+          "precision": 0.09811320754716982,
+          "recall": 1.0,
+          "f1-score": 0.17869415807560138,
+          "support": 26.0
+        },
+        "accuracy": 0.18430034129692832,
+        "macro avg": {
+          "precision": 0.5490566037735849,
+          "recall": 0.552434456928839,
+          "f1-score": 0.18426233327508884,
+          "support": 293.0
+        },
+        "weighted avg": {
+          "precision": 0.91996909008951,
+          "recall": 0.18430034129692832,
+          "f1-score": 0.18884229990674914,
+          "support": 293.0
+        }
+      }
+    }
+  ],
+  "test_set_counts": {
+    "total": 293,
+    "benign": 267,
+    "attack": 26
+  }
+}

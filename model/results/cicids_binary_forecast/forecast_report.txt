@@ -1,0 +1,13 @@
+CICIDS2017 NEXT-MINUTE ATTACK FORECAST
+Selected model: xgboost
+Test attack recall: 0.8077
+Test attack precision: 0.1556
+Test attack F1: 0.2609
+Test accuracy: 0.5939
+Test ROC-AUC: 0.7542494958225295
+Test average precision: 0.2187040323668801
+Test windows: 293
+
+Per-model test metrics:
+xgboost: recall=0.8077, precision=0.1556, F1=0.2609, accuracy=0.5939
+random_forest: recall=0.8077, precision=0.1338, F1=0.2295, accuracy=0.5188

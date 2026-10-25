@@ -1,0 +1,32 @@
+CICIDS2017 binary next-minute forecasting: imbalance comparison
+====================================================================
+Winner selected using validation metrics: xgboost_random_oversampling
+History: 10 minutes; target: attack in the next minute
+Chronological split per capture: 70% train / 15% validation / 15% test
+Only training data was resampled; validation/test remained untouched.
+
+xgboost_random_oversampling
+---------------------------
+Validation threshold: 0.01
+Validation precision / recall / F1: 0.2328 / 0.9474 / 0.3737
+Test attack precision / recall / F1: 0.1000 / 1.0000 / 0.1818
+Test macro-F1: 0.2009
+Test PR-AUC (average precision): 0.2547
+Test ROC-AUC: 0.798040910400461
+Test accuracy: 0.2014
+Confusion matrix [[TN, FP], [FN, TP]]: [[33, 234], [0, 26]]
+
+xgboost_class_weight
+--------------------
+Validation threshold: 0.01
+Validation precision / recall / F1: 0.2284 / 0.9298 / 0.3668
+Test attack precision / recall / F1: 0.0981 / 1.0000 / 0.1787
+Test macro-F1: 0.1843
+Test PR-AUC (average precision): 0.2917
+Test ROC-AUC: 0.8130221838087007
+Test accuracy: 0.1843
+Confusion matrix [[TN, FP], [FN, TP]]: [[28, 239], [0, 26]]
+
+Interpretation note:
+Precision-focused threshold selected on validation among thresholds with recall >= 0.95; if none qualifies, highest validation recall then precision. Model winner selected on validation recall/precision/F1.
+The final test metrics are estimates for this chronological split and may be noisy because the test set has few attack-positive windows.
