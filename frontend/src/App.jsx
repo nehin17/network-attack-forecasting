@@ -15,11 +15,8 @@ import {
 } from "recharts";
 
 import {
-  networkData,
-  currentForecast,
   attackHistory,
   attackDictionary,
-  protocolData,
 } from "./data/mockData";
 
 import "./index.css";
@@ -48,19 +45,95 @@ function App() {
   const [selectedDictionaryAttack, setSelectedDictionaryAttack] =
     useState(null);
 
-  const [leadTime, setLeadTime] = useState(
-    currentForecast.leadTimeSeconds
-  );
+  const [currentForecast, setCurrentForecast] = useState(null);
+  const [currentDetection, setCurrentDetection] = useState(null);
+  const [trafficSnapshot, setTrafficSnapshot] = useState(null);
+  const [trafficError, setTrafficError] = useState("");
+  const [apiLoading, setApiLoading] = useState(true);
+  const [apiError, setApiError] = useState("");
 
   useEffect(() => {
-    if (leadTime <= 0) return;
+    let cancelled = false;
+    fetch("/api/forecast/sample")
+      .then(async (response) => {
+        if (!response.ok) {
+          const body = await response.json().catch(() => ({}));
+          throw new Error(body.detail || `Forecast API HTTP ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (cancelled) return;
+        setCurrentForecast({
+          attackType: data.prediction,
+          category: "Binary next-minute forecast · CICIDS2017",
+          severity: data.prediction === "ATTACK" ? "ELEVATED" : "LOW",
+          confidence: Math.round(data.confidence * 100),
+          riskScore: Math.round(data.attack_probability * 100),
+          leadTimeSeconds: 60,
+          evidence: [
+            { label: "Attack probability", value: `${(data.attack_probability * 100).toFixed(1)}%`, score: Math.round(data.attack_probability * 100) },
+            { label: "Decision threshold", value: `${(data.threshold * 100).toFixed(1)}%`, score: Math.round(data.threshold * 100) },
+            { label: "History window", value: `${data.history_minutes} consecutive minutes`, score: 100 },
+            { label: "Actual next-minute label", value: data.actual_next_minute, score: data.actual_next_minute === data.prediction ? 100 : 0 },
+          ],
+          interpretation: `The saved ${data.model} model predicted ${data.prediction} for the next one-minute bin. Sample source: ${data.capture}. Ground truth: ${data.actual_next_minute}.`,
+          recommendations: data.prediction === "ATTACK"
+            ? ["Review the flagged test window", "Inspect false-positive behaviour before operational use", "Validate on additional captures"]
+            : ["Compare this forecast with the ground-truth label", "Review false negatives across the full test set", "Continue evaluation across additional captures"],
+          timestamp: data.target_time,
+          actual: data.actual_next_minute,
+          capture: data.capture,
+          model: data.model,
+          probability: data.attack_probability,
+        });
+        setApiLoading(false);
+      })
+      .catch((error) => {
+        if (!cancelled) {
+          setApiError(error.message || "Could not reach backend");
+          setApiLoading(false);
+        }
+      });
+    return () => { cancelled = true; };
+  }, []);
 
-    const timer = setInterval(() => {
-      setLeadTime((current) => Math.max(current - 1, 0));
-    }, 1000);
+  useEffect(() => {
+  let cancelled = false;
 
-    return () => clearInterval(timer);
-  }, [leadTime]);
+  fetch("/api/detection/sample")
+    .then((response) => {
+      if (!response.ok) throw new Error(`Detection API HTTP ${response.status}`);
+      return response.json();
+    })
+    .then((data) => {
+      if (!cancelled) setCurrentDetection(data);
+    })
+    .catch((error) => console.error("Detection API:", error));
+
+  return () => {
+    cancelled = true;
+  };
+}, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/traffic/sample")
+      .then(async (response) => {
+        if (!response.ok) {
+          const body = await response.json().catch(() => ({}));
+          throw new Error(body.detail || `Traffic API HTTP ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => { if (!cancelled) setTrafficSnapshot(data); })
+      .catch((error) => { if (!cancelled) setTrafficError(error.message || "Traffic data unavailable"); });
+    return () => { cancelled = true; };
+  }, []);
+
+  const [leadTime, setLeadTime] = useState(60);
+
+
 
 
   const themeClass = darkMode ? "dark-theme" : "light-theme";
@@ -231,6 +304,57 @@ function App() {
 
             </div>
 
+
+            <div style={{ marginBottom: "1rem" }}>
+              {apiLoading && "Loading real CICIDS2017 test-split inference from backend…"}
+              {!apiLoading && apiError && `Forecast API unavailable: ${apiError}`}
+              {!apiLoading && !apiError && currentForecast && (
+                <span>Backend connected · {currentForecast.capture} · ground truth: {currentForecast.actual}</span>
+              )}
+            </div>
+
+            {/* ACTUAL MODEL DETECTION */}
+<section className="active-threat" style={{ marginBottom: "1rem" }}>
+  <div className="threat-label">TON_IoT MODEL DETECTION</div>
+
+  {currentDetection ? (
+    <>
+      <h2 className="threat-name">
+        {currentDetection.predicted_class.toUpperCase()}
+      </h2>
+
+      <div className="threat-metrics">
+        <div>
+          <span>Confidence</span>
+          <strong>
+            {(currentDetection.confidence * 100).toFixed(2)}%
+          </strong>
+        </div>
+
+        <div>
+          <span>Risk Score</span>
+          <strong>{currentDetection.risk_score}</strong>
+        </div>
+
+        <div>
+          <span>Severity</span>
+          <strong>{currentDetection.severity}</strong>
+        </div>
+      </div>
+
+      <p>
+        Actual label: {currentDetection.actual_class} ·
+        {" "}Prediction {currentDetection.correct ? "correct" : "incorrect"}
+      </p>
+
+      <small>
+        Offline dataset replay · Sample {currentDetection.sample_index}
+      </small>
+    </>
+  ) : (
+    <p>Loading detection model…</p>
+  )}
+</section>
 
             {/* ACTIVE THREAT */}
 
@@ -451,16 +575,20 @@ function App() {
                 </span>
 
                 <h3>
-                  Live Traffic Activity
+                  Dataset Traffic Replay
                 </h3>
               </div>
 
               <span className="live-indicator">
-                ● LIVE
+                ● OFFLINE REPLAY
               </span>
 
             </div>
 
+
+            <p className="dataset-note" style={{ margin: "0.35rem 0 0.75rem", opacity: 0.75, fontSize: "0.75rem" }}>
+              {trafficSnapshot ? `${trafficSnapshot.source} · ${trafficSnapshot.capture}` : (trafficError || "Loading dataset traffic replay…")}
+            </p>
 
             {/* TRAFFIC GRAPH */}
 
@@ -497,7 +625,7 @@ function App() {
                   height={190}
                 >
 
-                  <AreaChart data={networkData}>
+                  <AreaChart data={trafficSnapshot?.minutes || []}>
 
                     <defs>
 
@@ -603,44 +731,44 @@ function App() {
 
               <div className="network-metric">
 
-                <span>PACKETS / SEC</span>
+                <span>AVERAGE FLOWS / MIN</span>
 
-                <strong>850</strong>
+                <strong>{trafficSnapshot ? Math.round(trafficSnapshot.total_flows / Math.max(trafficSnapshot.minutes.length, 1)) : "—"}</strong>
 
-                <small>↑ 18% vs baseline</small>
-
-              </div>
-
-
-              <div className="network-metric">
-
-                <span>THROUGHPUT</span>
-
-                <strong>2.4 MB/s</strong>
-
-                <small>↑ 12% vs baseline</small>
+                <small>Average flows per minute in replay window</small>
 
               </div>
 
 
               <div className="network-metric">
 
-                <span>FLOWS / MIN</span>
+                <span>RECORDED BYTES / MIN</span>
 
-                <strong>120</strong>
+                <strong>{trafficSnapshot ? `${(trafficSnapshot.minutes.reduce((sum, row) => sum + row.inbound + row.outbound, 0) / Math.max(trafficSnapshot.minutes.length, 1)).toFixed(1)} KB/min` : "—"}</strong>
 
-                <small>↑ 27% vs baseline</small>
+                <small>Average recorded packet bytes per minute (KB)</small>
 
               </div>
 
 
               <div className="network-metric">
 
-                <span>CONNECTIONS</span>
+                <span>TOTAL FLOWS</span>
 
-                <strong>34</strong>
+                <strong>{trafficSnapshot ? trafficSnapshot.total_flows : "—"}</strong>
 
-                <small>↑ 9% vs baseline</small>
+                <small>Total flows in selected replay window</small>
+
+              </div>
+
+
+              <div className="network-metric">
+
+                <span>ATTACK-LABELLED FLOWS</span>
+
+                <strong>{trafficSnapshot ? trafficSnapshot.attack_flows : "—"}</strong>
+
+                <small>Flows labelled as attacks</small>
 
               </div>
 
@@ -675,7 +803,7 @@ function App() {
                     <PieChart>
 
                       <Pie
-                        data={protocolData}
+                        data={trafficSnapshot?.protocols || []}
                         dataKey="value"
                         nameKey="name"
                         cx="50%"
@@ -700,8 +828,8 @@ function App() {
 
 
                   <div className="protocol-center">
-                    <strong>68%</strong>
-                    <span>TCP</span>
+                    <strong>{trafficSnapshot?.protocols?.[0]?.value ?? "—"}%</strong>
+                    <span>{trafficSnapshot?.protocols?.[0]?.name ?? "Protocol"}</span>
                   </div>
 
                 </div>
@@ -709,7 +837,7 @@ function App() {
 
                 <div className="protocol-list">
 
-                  {protocolData.map((protocol, index) => (
+                  {(trafficSnapshot?.protocols || []).map((protocol, index) => (
 
                     <div
                       key={protocol.name}
@@ -743,7 +871,7 @@ function App() {
                   <strong>Activity Risk</strong>
 
                   <span>
-                    Last 9 min
+                    Offline capture window
                   </span>
 
                 </div>
@@ -756,7 +884,7 @@ function App() {
                     height={180}
                   >
 
-                    <BarChart data={networkData}>
+                    <BarChart data={trafficSnapshot?.minutes || []}>
 
                       <XAxis
                         dataKey="time"
@@ -790,7 +918,7 @@ function App() {
                   </span>
 
                   <strong>
-                    87 / 100
+                    {trafficSnapshot ? `${trafficSnapshot.risk_score} / 100` : "—"}
                   </strong>
 
                 </div>
